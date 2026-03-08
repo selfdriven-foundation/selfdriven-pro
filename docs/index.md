@@ -225,7 +225,7 @@ selfdriven.pro proposes a pathway where professionals become conductors of AI ag
 
 In such systems, professional trust no longer depends on institutional intermediaries. It is **built into the architecture itself**.
 
---
+---
 
 - [Human Interface]( /interfaces/human)
 
