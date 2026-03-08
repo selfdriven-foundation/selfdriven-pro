@@ -1,0 +1,13 @@
+title: "selfdriven Pro"
+description: "selfdriven Pro"
+baseurl: ""
+url: ""
+defaults:
+  - scope:
+      path: "pages"
+      type: "pages"
+    values:
+      layout: default
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
