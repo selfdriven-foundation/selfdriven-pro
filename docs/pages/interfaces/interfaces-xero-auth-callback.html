@@ -1,0 +1,467 @@
+---
+layout: null
+title: Xero Auth - selfdriven.tech
+permalink: /interfaces/xero/auth
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Xero Auth - selfdriven.tech</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:           #f5f2ed;
+  --surface:      #edeae3;
+  --surface2:     #e5e1d8;
+  --border:       #ddd8ce;
+  --text:         #1a1410;
+  --muted:        #6b5f52;
+  --muted2:       #9e9085;
+  --accent:       #c8442f;
+  --accent-dim:   rgba(200,68,47,0.10);
+  --accent-strong:rgba(200,68,47,0.18);
+  --green:        #2e7d52;
+  --green-dim:    rgba(46,125,82,0.12);
+  --green-border: rgba(46,125,82,0.35);
+  --amber:        #b45309;
+  --amber-dim:    rgba(180,83,9,0.10);
+  --card-radius:  20px;
+  --shadow:       0 4px 24px rgba(0,0,0,0.08);
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg:           #0a0a0a;
+    --surface:      #161616;
+    --surface2:     #1e1e1e;
+    --border:       #2a2a2a;
+    --text:         #f0ede8;
+    --muted:        #b0a89e;
+    --muted2:       #7a7268;
+    --accent:       #e85d4a;
+    --accent-dim:   rgba(232,93,74,0.12);
+    --accent-strong:rgba(232,93,74,0.20);
+    --green:        #4ade80;
+    --green-dim:    rgba(74,222,128,0.10);
+    --green-border: rgba(74,222,128,0.30);
+    --amber:        #fbbf24;
+    --amber-dim:    rgba(251,191,36,0.10);
+    --shadow:       0 4px 24px rgba(0,0,0,0.4);
+  }
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+/* ── Brand header ── */
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 32px;
+}
+.brand-mark {
+  width: 38px; height: 38px;
+  background: var(--accent);
+  border-radius: 11px;
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 800; font-size: 15px; color: #fff;
+  letter-spacing: -0.03em;
+}
+.brand-name { font-size: 15px; font-weight: 800; color: var(--accent); letter-spacing: -0.02em; }
+.brand-sub  { font-size: 10px; font-weight: 500; color: var(--muted2); letter-spacing: 0.08em; text-transform: uppercase; }
+
+/* ── Card ── */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--card-radius);
+  box-shadow: var(--shadow);
+  width: 100%;
+  max-width: 640px;
+  overflow: hidden;
+}
+
+.card-accent-bar {
+  height: 3px;
+  background: var(--accent);
+}
+
+.card-body { padding: 32px 36px 36px; }
+
+/* ── States ── */
+.state { display: none; }
+.state.active { display: block; }
+
+/* success */
+.success-icon {
+  width: 52px; height: 52px;
+  background: var(--green-dim);
+  border: 1px solid var(--green-border);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 18px;
+  animation: pop 0.4s cubic-bezier(0.34,1.56,0.64,1);
+}
+@keyframes pop { from { transform: scale(0.5); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+
+.eyebrow {
+  font-size: 10px; font-weight: 700; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--accent);
+  margin-bottom: 6px;
+}
+.heading {
+  font-size: 22px; font-weight: 800; letter-spacing: -0.03em;
+  margin-bottom: 8px;
+}
+.subtext {
+  font-size: 13px; color: var(--muted); line-height: 1.6;
+  margin-bottom: 24px;
+}
+
+/* ── Value box ── */
+.value-label {
+  font-size: 11px; font-weight: 600; color: var(--muted);
+  letter-spacing: 0.06em; text-transform: uppercase;
+  margin-bottom: 6px;
+}
+.value-box {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 14px 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+.value-box code {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  color: var(--text);
+  flex: 1;
+  word-break: break-all;
+  line-height: 1.5;
+}
+.copy-btn {
+  flex-shrink: 0;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 6px 12px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 11px; font-weight: 600;
+  color: var(--muted);
+  cursor: pointer;
+  transition: all 0.15s;
+  white-space: nowrap;
+}
+.copy-btn:hover { background: var(--accent-dim); border-color: var(--accent); color: var(--accent); }
+.copy-btn.copied { background: var(--green-dim); border-color: var(--green-border); color: var(--green); }
+
+/* ── Curl block ── */
+.curl-wrap {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--accent);
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 20px;
+  position: relative;
+}
+.curl-wrap pre {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11.5px;
+  color: var(--text);
+  white-space: pre-wrap;
+  word-break: break-all;
+  line-height: 1.7;
+}
+.curl-copy {
+  position: absolute;
+  top: 10px; right: 10px;
+}
+
+/* ── Steps ── */
+.steps { margin-bottom: 24px; }
+.step {
+  display: flex;
+  gap: 14px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--border);
+}
+.step:last-child { border-bottom: none; }
+.step-num {
+  width: 24px; height: 24px;
+  background: var(--accent-dim);
+  border: 1px solid var(--accent-strong);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 11px; font-weight: 700; color: var(--accent);
+  flex-shrink: 0; margin-top: 1px;
+}
+.step-text { font-size: 13px; color: var(--muted); line-height: 1.5; }
+.step-text strong { color: var(--text); font-weight: 600; }
+
+/* ── Warning ── */
+.warning {
+  background: var(--amber-dim);
+  border: 1px solid rgba(180,83,9,0.2);
+  border-radius: 10px;
+  padding: 12px 14px;
+  font-size: 12px;
+  color: var(--amber);
+  display: flex; gap: 8px; align-items: flex-start;
+  margin-bottom: 20px;
+}
+@media (prefers-color-scheme: dark) {
+  .warning { border-color: rgba(251,191,36,0.2); }
+}
+
+/* ── Error state ── */
+.error-icon {
+  width: 52px; height: 52px;
+  background: var(--accent-dim);
+  border: 1px solid var(--accent-strong);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 18px;
+}
+
+/* ── Waiting state ── */
+.waiting-icon {
+  width: 52px; height: 52px;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 18px;
+}
+.pulse-ring {
+  width: 24px; height: 24px;
+  border: 2.5px solid var(--muted2);
+  border-top-color: var(--accent);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* ── Footer ── */
+.footer {
+  margin-top: 28px;
+  font-size: 11px; color: var(--muted2);
+  text-align: center;
+  line-height: 1.6;
+}
+</style>
+</head>
+<body>
+
+<div class="brand">
+  <div class="brand-mark">sd</div>
+  <div>
+    <div class="brand-name">selfdriven.ai</div>
+    <div class="brand-sub">Xero OAuth</div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-accent-bar"></div>
+  <div class="card-body">
+
+    <!-- ── Waiting (no params yet) ── -->
+    <div class="state" id="state-waiting">
+      <div class="waiting-icon"><div class="pulse-ring"></div></div>
+      <div class="eyebrow">OAuth 2.0</div>
+      <div class="heading">Waiting for Xero…</div>
+      <p class="subtext">
+        This page is your OAuth redirect URI. Open the authorisation URL in your browser —
+        Xero will redirect back here with your authorisation code.
+      </p>
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-text">Set your Xero app redirect URI to <strong>this page's URL</strong></div>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-text">Open the authorisation URL — Xero will ask you to log in and approve access</div>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <div class="step-text">Xero redirects back here — the code and curl command appear automatically</div>
+        </div>
+        <div class="step">
+          <div class="step-num">4</div>
+          <div class="step-text">Run the curl command in your terminal to exchange the code for tokens</div>
+        </div>
+      </div>
+      <div class="warning">
+        <span>⚠️</span>
+        <span>Host this file somewhere with HTTPS — GitHub Pages, Netlify, or any static host. The redirect URI must match exactly what you registered in the Xero developer portal.</span>
+      </div>
+    </div>
+
+    <!-- ── Success ── -->
+    <div class="state" id="state-success">
+      <div class="success-icon">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="color:var(--green)">
+          <polyline points="20 6 9 17 4 12"/>
+        </svg>
+      </div>
+      <div class="eyebrow">Authorisation code captured</div>
+      <div class="heading">Xero connected ✓</div>
+      <p class="subtext">
+        Copy the curl command below, run it in your terminal, then paste the
+        <code style="font-family:'JetBrains Mono',monospace;font-size:12px;background:var(--surface2);padding:1px 5px;border-radius:4px">access_token</code> and
+        <code style="font-family:'JetBrains Mono',monospace;font-size:12px;background:var(--surface2);padding:1px 5px;border-radius:4px">refresh_token</code>
+        into your <code style="font-family:'JetBrains Mono',monospace;font-size:12px;background:var(--surface2);padding:1px 5px;border-radius:4px">event.json</code>.
+        The code expires in <strong>60 seconds</strong> — run it now.
+      </p>
+
+      <div class="warning">
+        <span>⏱</span>
+        <span>Authorisation codes are single-use and expire after 60 seconds. Run the curl command immediately.</span>
+      </div>
+
+      <div class="value-label">Authorisation Code</div>
+      <div class="value-box">
+        <code id="code-display">—</code>
+        <button class="copy-btn" onclick="copyValue('code-display', this)">Copy</button>
+      </div>
+
+      <div class="value-label" style="margin-top:4px">Token Exchange — run this in your terminal</div>
+      <div class="curl-wrap">
+        <pre id="curl-display">—</pre>
+        <button class="copy-btn curl-copy" onclick="copyCurl(this)">Copy</button>
+      </div>
+
+      <div class="value-label">All URL Parameters</div>
+      <div class="value-box">
+        <code id="params-display" style="font-size:11px">—</code>
+        <button class="copy-btn" onclick="copyValue('params-display', this)">Copy</button>
+      </div>
+    </div>
+
+    <!-- ── Error ── -->
+    <div class="state" id="state-error">
+      <div class="error-icon">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="color:var(--accent)">
+          <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+        </svg>
+      </div>
+      <div class="eyebrow">Authorisation failed</div>
+      <div class="heading">Xero returned an error</div>
+      <p class="subtext">Xero declined the authorisation request. Check the details below and try again.</p>
+      <div class="value-label">Error</div>
+      <div class="value-box" style="border-color:var(--accent-strong)">
+        <code id="error-display" style="color:var(--accent)">—</code>
+      </div>
+      <div class="value-label">Description</div>
+      <div class="value-box">
+        <code id="error-desc-display">—</code>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="footer">
+  selfdriven.ai · Xero OAuth Callback Capture · Code expires 60s after issue<br>
+  This page does not transmit your credentials anywhere — all processing is local in your browser.
+</div>
+
+<script>
+(function () {
+  const params = new URLSearchParams(window.location.search);
+
+  const code  = params.get('code');
+  const error = params.get('error');
+
+  if (!code && !error) {
+    show('waiting');
+    return;
+  }
+
+  if (error) {
+    show('error');
+    setText('error-display',      error);
+    setText('error-desc-display', params.get('error_description') || '(no description)');
+    return;
+  }
+
+  // ── Success path ──────────────────────────────────────────────────
+  show('success');
+  setText('code-display', code);
+
+  // Build the curl command — client ID pre-filled if we can detect it from state
+  // (state param is just 'xero-recon' so we can't get client ID from it)
+  const redirectUri = window.location.origin + window.location.pathname;
+  const curlCmd =
+`curl -X POST https://identity.xero.com/connect/token \\
+  -H "Content-Type: application/x-www-form-urlencoded" \\
+  -u "YOUR_CLIENT_ID:YOUR_CLIENT_SECRET" \\
+  -d "grant_type=authorization_code" \\
+  -d "code=${code}" \\
+  -d "redirect_uri=${redirectUri}"`;
+
+  setText('curl-display', curlCmd);
+
+  // All params for reference
+  const allParams = [...params.entries()]
+    .map(([k, v]) => `${k}=${v}`)
+    .join('\n');
+  setText('params-display', allParams);
+
+  // Auto-select code for easy copying on mobile
+  document.getElementById('code-display').addEventListener('click', function () {
+    const range = document.createRange();
+    range.selectNodeContents(this);
+    window.getSelection().removeAllRanges();
+    window.getSelection().addRange(range);
+  });
+})();
+
+function show(state) {
+  document.querySelectorAll('.state').forEach(el => el.classList.remove('active'));
+  document.getElementById('state-' + state).classList.add('active');
+}
+
+function setText(id, text) {
+  document.getElementById(id).textContent = text;
+}
+
+function copyValue(id, btn) {
+  const text = document.getElementById(id).textContent;
+  navigator.clipboard.writeText(text).then(() => {
+    btn.textContent = 'Copied ✓';
+    btn.classList.add('copied');
+    setTimeout(() => { btn.textContent = 'Copy'; btn.classList.remove('copied'); }, 2000);
+  });
+}
+
+function copyCurl(btn) {
+  const text = document.getElementById('curl-display').textContent;
+  navigator.clipboard.writeText(text).then(() => {
+    btn.textContent = 'Copied ✓';
+    btn.classList.add('copied');
+    setTimeout(() => { btn.textContent = 'Copy'; btn.classList.remove('copied'); }, 2000);
+  });
+}
+</script>
+</body>
+</html>
