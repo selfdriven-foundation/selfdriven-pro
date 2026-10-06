@@ -279,8 +279,8 @@ img{max-width:100%}
 /* Logo: the pro mark is 2.5:1, so size by height */
 .logo img{width:auto;height:46px}
 
-/* Hero image is square: keep the icons and the figure in frame */
-.hero-photo{object-position:50% 34%}
+/* Hero image is square: keep the floating icons and the conductor in frame */
+.hero-photo{object-position:50% 26%}
 .chain{fill:none;stroke:#ffffff;stroke-width:2;opacity:.35}
 .chain-node{fill:#ffffff;opacity:.85}
 
