@@ -1,7 +1,11 @@
 title: "selfdriven Pro"
-description: "selfdriven Pro"
+description: "A framework for AI-automated professional services anchored in self-sovereign identity and KERI-based cryptographic trust."
 baseurl: ""
-url: ""
+url: "https://www.selfdriven.pro"
+markdown: kramdown
+kramdown:
+  input: GFM
+  hard_wrap: false
 defaults:
   - scope:
       path: "pages"
