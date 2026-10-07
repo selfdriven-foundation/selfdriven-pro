@@ -4,336 +4,693 @@ title: Human Interface - selfdriven Pro
 permalink: /interfaces/human
 ---
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-AU">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>selfdriven.pro — Professional Services</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
-<style>
-:root {
-  --bg:#f5f2ed;--surface:#edeae3;--surface2:#e5e1d8;--border:#ddd8ce;--border-strong:#ccc7bc;
-  --text:#1a1410;--text-2:#3d3428;--muted:#6b5f52;--muted2:#9e9085;
-  --accent:#c8442f;--accent-hover:#b53d2a;--accent-dim:rgba(200,68,47,0.10);--accent-strong:rgba(200,68,47,0.18);
-  --green:#2d8a5e;--green-bg:rgba(45,138,94,0.10);
-  --red:#c8442f;--red-bg:rgba(200,68,47,0.10);
-  --amber:#b8860b;--amber-bg:rgba(184,134,11,0.10);
-  --blue:#3a6fa8;--blue-bg:rgba(58,111,168,0.10);
-  --purple:#7c5db5;--purple-bg:rgba(124,93,181,0.10);
-  --teal:#1a8a7a;--teal-bg:rgba(26,138,122,0.10);
-  --pink:#b5457a;--pink-bg:rgba(181,69,122,0.10);
-  --sky:#2a7ab5;--sky-bg:rgba(42,122,181,0.10);
-  --card-radius:20px;--r:12px;--r-sm:8px;--r-lg:16px;--r-full:9999px;
-  --shadow:0 2px 16px rgba(0,0,0,0.07);--shadow-lg:0 8px 32px rgba(0,0,0,0.10);
-  --ease:cubic-bezier(0.4,0,0.2,1);--t:0.25s cubic-bezier(0.4,0,0.2,1);
-}
-@media (prefers-color-scheme:dark) {
-  :root {
-    --bg:#0a0a0a;--surface:#161616;--surface2:#1e1e1e;--border:#242424;--border-strong:#333;
-    --text:#f0ede8;--text-2:#d4cfc6;--muted:#b0b0b0;--muted2:#666;
-    --accent:#e85d4a;--accent-hover:#f06b58;--accent-dim:rgba(232,93,74,0.12);--accent-strong:rgba(232,93,74,0.20);
-    --green:#4ade80;--green-bg:rgba(74,222,128,0.10);--red:#e85d4a;--red-bg:rgba(232,93,74,0.10);
-    --amber:#fbbf24;--amber-bg:rgba(251,191,36,0.10);--blue:#60a5fa;--blue-bg:rgba(96,165,250,0.10);
-    --purple:#a78bfa;--purple-bg:rgba(167,139,250,0.10);--teal:#2dd4bf;--teal-bg:rgba(45,212,191,0.10);
-    --pink:#f472b6;--pink-bg:rgba(244,114,182,0.10);--sky:#38bdf8;--sky-bg:rgba(56,189,248,0.10);
-    --shadow:0 2px 16px rgba(0,0,0,0.4);--shadow-lg:0 8px 32px rgba(0,0,0,0.5);
-  }
-}
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{font-size:15px}
-body{font-family:'Poppins',system-ui,sans-serif;background:var(--bg);color:var(--text);min-height:100vh;-webkit-font-smoothing:antialiased;line-height:1.6}
-::-webkit-scrollbar{width:5px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:var(--border-strong);border-radius:10px}
-.app{display:flex;min-height:100vh}
-.hidden{display:none!important}
+	<meta charset="UTF-8" />
+	<title>Human Interface — selfdriven Pro</title>
+	<meta name="description" content="Sign in with your passkey or KERI identifier and work across nine professional service domains, with agents doing the work and you as the conductor."/>
+	<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+	<link rel="shortcut icon" href="/assets/img/selfdriven-logo-round-blackcurrant-cararra.png">
+	<meta property="og:title" content="selfdriven Pro — Human Interface" />
+	<meta property="og:description" content="Sign in with your passkey or KERI identifier and work across nine professional service domains." />
+	<meta property="og:image" content="https://www.selfdriven.pro/assets/img/selfdriven-pro-og-1200.jpg" />
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="/assets/css/style.css" />
+	<style>
+		/* Human Interface — app layer on top of /assets/css/style.css. Uses the shared tokens only. */
+		:root{--ok:#2f7d55}
+		@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--ok:#5cc28d}}
+		:root[data-theme="dark"]{--ok:#5cc28d}
 
-/* SIDEBAR */
-.sidebar{width:256px;background:var(--surface);border-right:1px solid var(--border);display:flex;flex-direction:column;position:fixed;top:0;left:0;bottom:0;z-index:200;transition:transform 0.3s var(--ease);box-shadow:var(--shadow)}
-.sb-brand{padding:20px 18px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:11px}
-.sb-logo{width:36px;height:36px;border-radius:10px;overflow:hidden;flex-shrink:0}.sb-logo img{width:100%;height:100%;object-fit:cover;display:block}
-.sb-brand-text{line-height:1.2}.sb-brand-name{font-weight:600;font-size:14px;letter-spacing:-0.02em}.sb-brand-sub{font-size:9.5px;color:var(--muted2);letter-spacing:0.3px;font-weight:500}
-.sb-scroll{flex:1;overflow-y:auto;padding:14px 10px}
-.sb-group{margin-bottom:22px}.sb-group-label{font-size:9px;font-weight:700;letter-spacing:1.8px;text-transform:uppercase;color:var(--muted2);padding:0 10px;margin-bottom:6px}
-.sb-item{display:flex;align-items:center;gap:10px;padding:9px 10px;border-radius:var(--r-sm);font-size:13px;font-weight:500;color:var(--muted);cursor:pointer;transition:all var(--t);position:relative;user-select:none}
-.sb-item:hover{background:var(--surface2);color:var(--text)}.sb-item.active{background:var(--accent-dim);color:var(--accent);font-weight:600}
-.sb-item.active::before{content:'';position:absolute;left:0;top:50%;transform:translateY(-50%);width:3px;height:18px;background:var(--accent);border-radius:0 4px 4px 0}
-.sb-icon{width:18px;height:18px;flex-shrink:0;display:grid;place-items:center}.sb-icon svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
-.sb-badge{margin-left:auto;font-size:10px;font-weight:700;padding:1px 7px;border-radius:var(--r-full);background:var(--accent);color:white}
-.sb-footer{padding:14px;border-top:1px solid var(--border)}.sb-identity{background:var(--bg);border:1px solid var(--border);border-radius:var(--r);padding:12px;box-shadow:var(--shadow)}
-.sb-id-aid{font-family:'JetBrains Mono';font-size:10px;color:var(--accent);display:flex;align-items:center;gap:6px;margin-bottom:5px}
-.sb-id-dot{width:6px;height:6px;background:var(--green);border-radius:50%;animation:pulse 2s infinite}@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.3}}
-.sb-id-name{font-size:12.5px;font-weight:600}.sb-id-role{font-size:10.5px;color:var(--muted2)}
+		.nav a[aria-current="page"]{color:var(--orange)}
+		.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+		button{font:inherit;color:inherit}
+		button:focus-visible,input:focus-visible{outline:3px solid var(--orange);outline-offset:3px}
 
-/* MAIN */
-.main{flex:1;margin-left:256px}
-.topbar{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:14px 28px;background:rgba(245,242,237,0.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
-@media (prefers-color-scheme:dark){.topbar{background:rgba(10,10,10,0.92)}}
-.tb-left{display:flex;align-items:center;gap:14px}
-.mobile-toggle{display:none;width:36px;height:36px;border-radius:var(--r-sm);border:1px solid var(--border);background:var(--surface);color:var(--muted);cursor:pointer;place-items:center}
-.mobile-toggle svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:1.7}
-.tb-title{font-size:18px;font-weight:700;letter-spacing:-0.03em}
-.tb-right{display:flex;align-items:center;gap:10px}
-.tb-pill{display:flex;align-items:center;gap:6px;padding:5px 12px;border-radius:var(--r-full);font-size:11px;font-weight:600;color:var(--muted);border:1px solid var(--border);background:var(--surface)}
-.tb-pill svg{width:13px;height:13px;stroke:currentColor;fill:none;stroke-width:2}.tb-pill .accent{color:var(--accent)}
-.tb-btn{width:36px;height:36px;border-radius:var(--r-sm);border:1px solid var(--border);background:var(--surface);color:var(--muted);cursor:pointer;display:grid;place-items:center;transition:all var(--t);position:relative}
-.tb-btn:hover{background:var(--surface2);color:var(--text);border-color:var(--border-strong)}.tb-btn svg{width:17px;height:17px;stroke:currentColor;fill:none;stroke-width:1.7}
-.tb-btn .dot{position:absolute;top:6px;right:6px;width:6px;height:6px;background:var(--accent);border-radius:50%;border:1.5px solid var(--surface)}
-.content{padding:24px 28px;max-width:1200px}
-.view{display:none}.view.active{display:block;animation:viewIn 0.35s var(--ease)}@keyframes viewIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
-.hero{position:relative;background:var(--surface);border:1px solid var(--border);border-radius:var(--card-radius);padding:28px 30px;margin-bottom:22px;overflow:hidden;box-shadow:var(--shadow)}.hero::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--accent)}
-.hero-label{font-size:11px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent);margin-bottom:8px}
-.hero-amount{font-size:42px;font-weight:800;letter-spacing:-0.04em;line-height:1.05;margin-bottom:4px}.hero-amount .sym{font-size:28px;font-weight:400;color:var(--muted)}
-.hero-sub{font-size:12.5px;color:var(--muted)}.hero-actions{display:flex;gap:8px;margin-top:20px;flex-wrap:wrap}
-.ha-btn{display:flex;align-items:center;gap:7px;padding:9px 18px;border-radius:var(--r-full);font-size:12px;font-weight:600;font-family:'Poppins';cursor:pointer;transition:all var(--t);border:none}
-.ha-btn svg{width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:2}
-.ha-btn.primary{background:var(--accent);color:white}.ha-btn.primary:hover{background:var(--accent-hover);box-shadow:0 4px 20px var(--accent-dim);transform:translateY(-1px)}
-.ha-btn.ghost{background:var(--bg);color:var(--text);border:1px solid var(--border)}.ha-btn.ghost:hover{background:var(--surface2);border-color:var(--border-strong)}
-.g2{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px}.g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-bottom:20px}
-.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--card-radius);padding:22px;box-shadow:var(--shadow);transition:transform var(--t),box-shadow var(--t)}.card:hover{box-shadow:var(--shadow-lg)}
-.ch{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}.ct{font-size:14px;font-weight:700;letter-spacing:-0.02em}.ca{font-size:11px;color:var(--accent);cursor:pointer;font-weight:600;letter-spacing:0.02em;transition:color var(--t)}.ca:hover{color:var(--accent-hover)}
-.stat{text-align:center}.stat-val{font-size:28px;font-weight:800;letter-spacing:-0.04em;margin-bottom:4px}.stat-label{font-size:11px;color:var(--muted2);font-weight:500}
-.row{display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid var(--border)}.row:last-child{border-bottom:none}
-.row-ico{width:38px;height:38px;border-radius:var(--r-sm);display:grid;place-items:center;flex-shrink:0}
-.row-ico svg{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
-.row-info{flex:1;min-width:0}.row-name{font-size:13.5px;font-weight:600;transition:color var(--t)}.row-meta{font-size:11px;color:var(--muted2);margin-top:1px;display:flex;align-items:center;gap:5px;flex-wrap:wrap}
-.row-right{text-align:right}.row-val{font-family:'JetBrains Mono';font-size:12.5px;font-weight:500}.row-sub{font-size:10px;color:var(--muted2);margin-top:1px}
-.pill{display:inline-flex;padding:1px 8px;border-radius:var(--r-full);font-size:10px;font-weight:600}
-.keri-badge{display:inline-flex;align-items:center;gap:3px;font-size:9.5px;font-weight:700;color:var(--accent)}
-.keri-badge svg{width:9px;height:9px;stroke:currentColor;fill:none;stroke-width:2.5}
+		/* Sign in */
+		.signin-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:8px}
+		.signin-actions .button{border:0;cursor:pointer}
+		.button.outline{background:transparent;color:var(--ink);box-shadow:inset 0 0 0 1px var(--line)}
+		.button.outline:hover{box-shadow:none}
+		.button[disabled]{opacity:.55;cursor:wait}
+		.signin-note{font-size:13px;color:var(--muted);margin:22px 0 0}
+		.gate{cursor:default}
+		.gate:hover{background:var(--panel)}
+		.gate-status{display:flex;flex-direction:column;gap:2px}
+		.gate-status strong{font-family:var(--font-display);font-size:1.3rem;font-weight:600;letter-spacing:-.02em}
+		.gate-status small{font-size:13px;opacity:.75}
+		.gate.verifying .chain-node{animation:node-on .35s ease forwards;animation-delay:calc(var(--i) * .35s)}
+		.gate.verified .pulse{animation:none}
+		@keyframes node-on{to{fill:var(--orange-on-dark);opacity:1}}
 
-/* Chat */
-.chat-area{background:var(--bg);border:1px solid var(--border);border-radius:var(--r);min-height:300px;max-height:420px;overflow-y:auto;padding:16px;margin-bottom:14px}
-.msg{margin-bottom:14px;animation:viewIn 0.3s var(--ease)}
-.msg-agent{display:flex;gap:10px}.msg-user{display:flex;justify-content:flex-end}
-.msg-avatar{width:32px;height:32px;border-radius:var(--r-sm);display:grid;place-items:center;flex-shrink:0}
-.msg-avatar svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
-.msg-bubble{max-width:75%;padding:12px 16px;border-radius:16px;font-size:13px;line-height:1.6}
-.msg-agent .msg-bubble{background:var(--surface);border:1px solid var(--border);border-bottom-left-radius:4px}
-.msg-user .msg-bubble{background:var(--accent);color:white;border-bottom-right-radius:4px}
-.msg-header{display:flex;align-items:center;gap:6px;margin-bottom:4px;font-size:11px}
-.msg-header .name{font-weight:600}.msg-header .badge{font-family:'JetBrains Mono';font-size:9px;padding:1px 6px;border-radius:4px;background:var(--green-bg);color:var(--green);font-weight:600}
-.chat-input-row{display:flex;gap:8px}.chat-input{flex:1;padding:10px 16px;background:var(--bg);border:1px solid var(--border);border-radius:var(--r);color:var(--text);font-family:'Poppins';font-size:13px;outline:none;transition:border-color var(--t)}.chat-input:focus{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-dim)}
-.chat-send{padding:10px 20px;border-radius:var(--r-full);background:var(--accent);color:white;border:none;font-family:'Poppins';font-size:12px;font-weight:600;cursor:pointer;transition:all var(--t)}.chat-send:hover{background:var(--accent-hover)}
-.qa-row{display:flex;gap:6px;margin-bottom:14px;flex-wrap:wrap}.qa-btn{padding:6px 14px;border-radius:var(--r-full);background:var(--bg);border:1px solid var(--border);font-size:11px;font-weight:500;color:var(--muted);cursor:pointer;font-family:'Poppins';transition:all var(--t)}.qa-btn:hover{border-color:var(--accent);color:var(--accent);background:var(--accent-dim)}
+		/* Session bar */
+		.session{display:flex;align-items:center;justify-content:space-between;gap:16px 24px;flex-wrap:wrap;padding-bottom:22px;margin-bottom:44px;border-bottom:1px solid var(--line)}
+		.session-id{display:flex;align-items:center;gap:10px 16px;flex-wrap:wrap}
+		.live{width:8px;height:8px;border-radius:50%;background:var(--ok);flex:0 0 auto;animation:live 2s ease-in-out infinite}
+		@keyframes live{50%{opacity:.35}}
+		.aid{font-family:var(--font-mono);font-size:13px;color:var(--orange)}
+		.session-name{font-weight:600}
+		.session-role{font-size:14px;color:var(--muted)}
+		.session-tools{display:flex;align-items:center;gap:18px}
+		.chip{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:500;border:1px solid var(--line);border-radius:999px;padding:4px 12px}
+		.text-button{background:none;border:0;padding:0;font-weight:600;font-size:14px;text-decoration:underline;text-underline-offset:5px;cursor:pointer}
+		.text-button:hover{color:var(--orange-hover)}
 
-/* Auth */
-.auth{position:fixed;inset:0;z-index:1000;background:var(--bg);display:grid;place-items:center}.auth.hidden{display:none}
-.auth-inner{width:100%;max-width:400px;padding:0 20px;text-align:center}
-.auth-logo{display:flex;align-items:center;justify-content:center;gap:12px;margin-bottom:44px}.auth-logo-mark{width:48px;height:48px;border-radius:14px;overflow:hidden}.auth-logo-mark img{width:100%;height:100%;object-fit:cover;display:block}
-.auth-logo-text{font-size:26px;font-weight:800;letter-spacing:-0.04em}.auth-logo-text .m{color:var(--accent)}
-.auth-box{background:var(--surface);border:1px solid var(--border);border-radius:var(--card-radius);padding:36px 28px;position:relative;overflow:hidden;box-shadow:var(--shadow)}.auth-box::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--accent)}
-.auth-h{font-size:20px;font-weight:700;margin-bottom:6px;letter-spacing:-0.03em}.auth-p{font-size:13px;color:var(--muted);margin-bottom:28px;line-height:1.6}
-.auth-btn{width:100%;padding:14px 20px;border-radius:var(--r-full);font-family:'Poppins';font-size:13px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:10px;transition:all var(--t);border:none}
-.auth-btn svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:2}
-.auth-btn.pk{background:var(--accent);color:white;margin-bottom:12px}.auth-btn.pk:hover{background:var(--accent-hover);box-shadow:0 4px 28px var(--accent-dim);transform:translateY(-1px)}
-.auth-btn.keri{background:var(--bg);color:var(--text);border:1px solid var(--border)}.auth-btn.keri:hover{background:var(--surface2)}
-.auth-div{display:flex;align-items:center;gap:14px;margin:14px 0}.auth-div::before,.auth-div::after{content:'';flex:1;height:1px;background:var(--border)}.auth-div span{font-size:10px;color:var(--muted2);font-weight:600;letter-spacing:0.12em}
-.auth-foot{margin-top:20px;font-size:11px;color:var(--muted2);line-height:1.6}.auth-foot a{color:var(--accent);text-decoration:none;font-weight:600}
-.bio-overlay{position:fixed;inset:0;z-index:2000;background:rgba(26,20,16,0.96);display:none;justify-content:center;align-items:center;flex-direction:column}@media(prefers-color-scheme:dark){.bio-overlay{background:rgba(10,10,10,0.96)}}.bio-overlay.on{display:flex}
-.bio-ring{width:110px;height:110px;border-radius:50%;border:2px solid var(--accent);display:grid;place-items:center;animation:ring-p 1.5s ease infinite;margin-bottom:22px}@keyframes ring-p{0%,100%{box-shadow:0 0 0 0 var(--accent-dim)}50%{box-shadow:0 0 0 18px transparent}}
-.bio-ring svg{width:42px;height:42px;stroke:var(--accent);fill:none;stroke-width:1.5;animation:bio-draw 1.8s ease forwards}@keyframes bio-draw{from{stroke-dasharray:200;stroke-dashoffset:200;opacity:0.3}to{stroke-dasharray:200;stroke-dashoffset:0;opacity:1}}
-.bio-text{font-size:17px;font-weight:600;color:var(--text);margin-bottom:6px}.bio-sub{font-size:12.5px;color:var(--muted)}
-.stg>*{opacity:0;animation:stgIn 0.4s var(--ease) forwards}.stg>*:nth-child(1){animation-delay:.04s}.stg>*:nth-child(2){animation-delay:.08s}.stg>*:nth-child(3){animation-delay:.12s}.stg>*:nth-child(4){animation-delay:.16s}.stg>*:nth-child(5){animation-delay:.2s}.stg>*:nth-child(6){animation-delay:.24s}.stg>*:nth-child(7){animation-delay:.28s}.stg>*:nth-child(8){animation-delay:.32s}.stg>*:nth-child(9){animation-delay:.36s}@keyframes stgIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
-@media(max-width:768px){.sidebar{transform:translateX(-100%)}.sidebar.open{transform:translateX(0);box-shadow:6px 0 40px rgba(0,0,0,0.2)}.main{margin-left:0}.mobile-toggle{display:grid}.content{padding:18px 14px}.topbar{padding:10px 14px}.g2,.g3{grid-template-columns:1fr}}
-</style>
+		/* Workspace: rail + views */
+		.workspace{display:grid;grid-template-columns:200px minmax(0,1fr);gap:56px;align-items:start;scroll-margin-top:20px}
+		.rail{position:sticky;top:28px;border-left:1px solid var(--line);padding-left:20px}
+		.rail-label{font-size:12px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin:0 0 8px}
+		.rail ul{list-style:none;padding:0;margin:0 0 24px}
+		.rail ul:last-child{margin-bottom:0}
+		.rail li{position:relative}
+		.rail button{display:flex;align-items:center;gap:8px;width:100%;background:none;border:0;padding:5px 0;font-size:14px;color:var(--muted);text-align:left;cursor:pointer;white-space:nowrap}
+		.rail button:hover{color:var(--ink)}
+		.rail button[aria-current="true"]{color:var(--ink);font-weight:600}
+		.rail button[aria-current="true"]::before{content:"";position:absolute;left:-22px;top:6px;bottom:6px;width:3px;border-radius:2px;background:var(--orange)}
+		.count{margin-left:auto;font-size:11px;font-weight:700;line-height:18px;padding:0 7px;border-radius:999px;background:var(--orange);color:#fff}
+		.view h2:focus{outline:none}
+		.block{margin-top:72px}
+
+		/* Stat tiles (same palette as the homepage discipline tiles) */
+		.stat-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:26px}
+		.stat{border-radius:8px;padding:26px 28px;min-height:190px;display:flex;flex-direction:column;justify-content:space-between;color:#fff}
+		.stat.tile-lilac{color:#24202a}
+		.stat-label{font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;opacity:.7;margin:0}
+		.stat-value{font-family:var(--font-display);font-size:clamp(2.6rem,4vw,3.6rem);font-weight:600;letter-spacing:-.04em;line-height:1;margin:18px 0 8px}
+		.stat-note{font-size:14px;opacity:.75;margin:0}
+		.actions{display:flex;flex-wrap:wrap;align-items:center;gap:14px 24px;margin:32px 0 0}
+		.actions .button{border:0;cursor:pointer}
+
+		/* Cards that act as buttons */
+		.scope-list li.pick{padding:0}
+		.domain-list li.pick{display:flex}
+		.card-button{flex:1;display:flex;flex-direction:column;width:100%;height:100%;background:none;border:0;padding:20px 22px;text-align:left;cursor:pointer;border-radius:7px}
+		.card-button h4{margin:0 0 8px}
+		.card-button .desc{font-size:14px;color:var(--muted);margin:0}
+		.status{display:inline-flex;align-items:center;gap:7px;margin-top:14px;font-size:13px;font-weight:600;color:var(--ink)}
+		.status::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--orange)}
+		.status.done::before{background:var(--ok)}
+		.status.idle::before{background:var(--muted)}
+		.status time,.status .when{font-weight:400;color:var(--muted)}
+		.acdc{font-family:var(--font-mono);font-size:11px;font-weight:600;color:var(--ok);border:1px solid currentColor;border-radius:4px;padding:0 5px;white-space:nowrap}
+
+		/* Chat */
+		.chat{border:1px solid var(--line);border-radius:8px;overflow:hidden;background:var(--paper)}
+		.chat-quick{display:flex;flex-wrap:wrap;gap:8px;padding:16px 18px;border-bottom:1px solid var(--line)}
+		.chat-quick button{font-size:13px;font-weight:500;border:1px solid var(--line);border-radius:999px;padding:4px 12px;background:var(--paper);cursor:pointer;transition:border-color .2s,color .2s}
+		.chat-quick button:hover{border-color:var(--orange);color:var(--orange)}
+		.chat-log{height:380px;overflow-y:auto;padding:20px 18px;display:flex;flex-direction:column;gap:14px;background:var(--surface)}
+		.msg{max-width:80%;font-size:15px;line-height:1.6}
+		.msg-agent{align-self:flex-start}
+		.msg-head{display:flex;align-items:center;gap:8px;margin:0 0 6px;font-size:13px}
+		.msg-name{font-family:var(--font-display);font-weight:600;letter-spacing:-.01em}
+		.msg-body{background:var(--paper);border:1px solid var(--line);border-radius:12px 12px 12px 4px;padding:12px 16px}
+		.msg-typing .msg-body{color:var(--muted)}
+		.msg-user{align-self:flex-end;background:var(--button-bg);color:var(--button-fg);border-radius:12px 12px 4px 12px;padding:12px 16px}
+		.chat-form{display:flex;gap:10px;padding:14px;border-top:1px solid var(--line)}
+		.chat-form input{flex:1;min-width:0;font:inherit;font-size:15px;padding:11px 14px;border:1px solid var(--line);border-radius:6px;background:var(--paper);color:var(--ink)}
+		.chat-form input:focus{outline:none;border-color:var(--orange)}
+		.chat-form .button{min-height:46px;padding:11px 20px;border:0;cursor:pointer}
+		.scope-head .text-link{display:inline-flex;align-items:center;gap:6px;margin-top:18px;font-size:15px;text-decoration:underline}
+
+		/* Identity + settings */
+		.aid-box{align-self:start;font-family:var(--font-mono);font-size:15px;color:var(--orange);background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:18px 20px;margin:0;word-break:break-all}
+		.settings{list-style:none;padding:0;margin:0}
+		.setting{display:flex;align-items:center;justify-content:space-between;gap:24px;padding:18px 0;border-bottom:1px solid var(--line)}
+		.setting:first-child{padding-top:0}
+		.setting h4{font-size:1.1rem;letter-spacing:-.02em;margin:0 0 4px}
+		.setting p{font-size:14px;color:var(--muted);margin:0}
+		.switch{position:relative;flex:0 0 auto;width:46px;height:26px;border:0;border-radius:999px;background:var(--line);cursor:pointer;transition:background .2s}
+		.switch::after{content:"";position:absolute;top:3px;left:3px;width:20px;height:20px;border-radius:50%;background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.25);transition:transform .2s}
+		.switch[aria-checked="true"]{background:var(--orange)}
+		.switch[aria-checked="true"]::after{transform:translateX(20px)}
+		.details{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px 30px;margin:0}
+		.details dt{font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin:0 0 4px}
+		.details dd{margin:0;font-size:16px}
+
+		@media(max-width:960px){
+			.workspace{grid-template-columns:1fr;gap:28px}
+			.rail{position:static;border-left:0;padding:0 0 2px;border-bottom:1px solid var(--line);display:flex;gap:22px;overflow-x:auto;scrollbar-width:none}
+			.rail-label{display:none}
+			.rail ul{display:flex;gap:22px;margin:0}
+			.rail button{padding:10px 0 12px}
+			.rail button[aria-current="true"]::before{left:0;right:0;top:auto;bottom:0;width:auto;height:3px}
+		}
+		@media(max-width:760px){
+			.session{margin-bottom:28px}
+			.stat-grid{grid-template-columns:1fr;gap:14px}
+			.stat{min-height:0}
+			.chat-log{height:340px}
+			.msg{max-width:92%}
+			.details{grid-template-columns:1fr}
+			.block{margin-top:56px}
+		}
+	</style>
 </head>
 <body>
+<a class="skip" href="#main">Skip to content</a>
+	<header class="header">
+		<div class="logo">
+			<a href="/"><img src="/assets/img/selfdriven-logo-pro-flamingo-transparent.png" alt="selfdriven pro" width="2148" height="860"></a>
+		</div>
+		<nav class="nav" aria-label="Main navigation"><a href="/#principle">Principle</a><a href="/#architecture">Architecture</a><a href="/#domains">Domains</a><a href="/#conductor">Conductor</a><a href="/framework">Framework</a><a href="/interfaces/human" aria-current="page">Human Interface</a></nav>
+	</header>
 
-<!-- AUTH -->
-<div class="auth" id="auth">
-  <div class="auth-inner">
-    <div class="auth-logo"><div class="auth-logo-mark"><img src="data:image/png;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/4gHYSUNDX1BST0ZJTEUAAQEAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAAAADTLQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlkZXNjAAAA8AAAACRyWFlaAAABFAAAABRnWFlaAAABKAAAABRiWFlaAAABPAAAABR3dHB0AAABUAAAABRyVFJDAAABZAAAAChnVFJDAAABZAAAAChiVFJDAAABZAAAAChjcHJ0AAABjAAAADxtbHVjAAAAAAAAAAEAAAAMZW5VUwAAAAgAAAAcAHMAUgBHAEJYWVogAAAAAAAAb6IAADj1AAADkFhZWiAAAAAAAABimQAAt4UAABjaWFlaIAAAAAAAACSgAAAPhAAAts9YWVogAAAAAAAA9tYAAQAAAADTLXBhcmEAAAAAAAQAAAACZmYAAPKnAAANWQAAE9AAAApbAAAAAAAAAABtbHVjAAAAAAAAAAEAAAAMZW5VUwAAACAAAAAcAEcAbwBvAGcAbABlACAASQBuAGMALgAgADIAMAAxADb/2wBDAAUDBAQEAwUEBAQFBQUGBwwIBwcHBw8LCwkMEQ8SEhEPERETFhwXExQaFRERGCEYGh0dHx8fExciJCIeJBweHx7/2wBDAQUFBQcGBw4ICA4eFBEUHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh7/wAARCAMgAyADASIAAhEBAxEB/8QAHAABAQEBAAMBAQAAAAAAAAAAAAIBBwUGCAQD/8QAPBABAAIBAwIDAwgLAAICAwAAAAECAwQFEQZRITFhB0GyEiI1NnF0gZMTFhcjMlNVYnPR8DORFUJSobH/xAAbAQEAAwEBAQEAAAAAAAAAAAAAAQUGAgQDB//EADQRAQABAgMDCAoDAQEAAAAAAAABAhEDBAUxUeESEyEyQXGxwQYVFiIzUmGBkaEjNEJDFP/aAAwDAQACEQMRAD8A/kA/On7cAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADxu/btg2rTfKtxfNaP3ePnz9Z9H69vy2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" alt="selfdriven"></div><div class="auth-logo-text">selfdriven<span class="m">.pro</span></div></div>
-    <div class="auth-box">
-      <div class="auth-h">Welcome to your services</div>
-      <div class="auth-p">Sign in with your passkey or KERI autonomous identifier. No passwords. Sovereign by design.</div>
-      <button class="auth-btn pk" onclick="doAuth()"><svg viewBox="0 0 24 24"><path d="M12 11c0 3.517-1.009 6.799-2.753 9.571m-3.44-2.04l.054-.09A13.9 13.9 0 008 11a4 4 0 118 0c0 1.017-.07 2.019-.203 3m-2.118 6.844A21.88 21.88 0 0015.171 17m3.839 1.132c.645-2.266.99-4.659.99-7.132A8 8 0 008 4.07M3 15.364c.64-1.319 1-2.8 1-4.364 0-1.457.39-2.823 1.07-4"/></svg>Sign in with Passkey</button>
-      <div class="auth-div"><span>OR</span></div>
-      <button class="auth-btn keri" onclick="doAuth()"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>Authenticate with KERI AID</button>
-      <div class="auth-foot">Protected by KERI key event infrastructure &amp; FIDO2 passkeys.<br><a href="https://selfdriven.foundation">selfdriven.foundation</a> · <a href="#">Privacy</a> · <a href="#">PDS</a> · <a href="#">FSG</a></div>
-    </div>
-  </div>
-</div>
+<main class="main-content" id="main">
 
-<!-- BIOMETRIC -->
-<div class="bio-overlay" id="bio"><div class="bio-ring"><svg viewBox="0 0 24 24"><path d="M12 11c0 3.517-1.009 6.799-2.753 9.571m-3.44-2.04l.054-.09A13.9 13.9 0 008 11a4 4 0 118 0c0 1.017-.07 2.019-.203 3m-2.118 6.844A21.88 21.88 0 0015.171 17m3.839 1.132c.645-2.266.99-4.659.99-7.132A8 8 0 008 4.07M3 15.364c.64-1.319 1-2.8 1-4.364 0-1.457.39-2.823 1.07-4"/></svg></div><div class="bio-text">Verifying identity...</div><div class="bio-sub">Touch sensor or approve on your device</div></div>
+	<!-- SIGN IN -->
+	<div id="signin">
+		<section class="hero" aria-labelledby="signin-title">
+			<div class="hero-copy">
+				<p class="eyebrow">Human Interface</p>
+				<h1 id="signin-title">Sign in to your practice<span>.</span></h1>
+				<p class="intro">Use your passkey or KERI autonomous identifier. No passwords. Sovereign by design.</p>
+				<div class="signin-actions">
+					<button type="button" class="button" data-signin>Sign in with passkey <span><svg class="arrow-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6 18 18 6M6 6h12v12"/></svg></span></button>
+					<button type="button" class="button outline" data-signin>Authenticate with KERI AID</button>
+				</div>
+				<p class="signin-note">Protected by KERI key event infrastructure and FIDO2 passkeys. <a href="https://selfdriven.foundation" target="_blank" rel="noopener">selfdriven.foundation</a></p>
+			</div>
+			<div class="hero-media">
+				<div class="hero-art gate" id="gate">
+					<span class="ward" aria-hidden="true">
+						<svg viewBox="0 0 600 470" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" focusable="false">
+							<defs><pattern id="grid" width="30" height="30" patternUnits="userSpaceOnUse"><path class="grid-line" d="M30 0H0V30" fill="none"/></pattern></defs>
+							<rect width="600" height="470" style="fill:var(--panel)"/>
+							<rect width="600" height="470" fill="url(#grid)"/>
+							<text class="readout-label" x="150" y="118">KEL</text>
+							<text class="readout" x="150" y="160" font-size="44" font-weight="600">24</text>
+							<text class="readout-label" x="290" y="118">WITNESSES</text>
+							<text class="readout" x="290" y="160" font-size="44" font-weight="600">3</text>
+							<text class="readout-label" x="430" y="118">PASSKEYS</text>
+							<text class="readout" x="430" y="160" font-size="44" font-weight="600">2</text>
+							<line class="chain" x1="40" y1="300" x2="560" y2="300"/>
+							<circle class="chain-node" style="--i:0" cx="80" cy="300" r="7"/>
+							<circle class="chain-node" style="--i:1" cx="200" cy="300" r="7"/>
+							<circle class="chain-node" style="--i:2" cx="320" cy="300" r="7"/>
+							<circle class="chain-node" style="--i:3" cx="440" cy="300" r="7"/>
+							<circle class="pulse" cx="560" cy="300" r="7"/>
+						</svg>
+					</span>
+					<span class="art-label">SELFDRIVEN / HUMAN INTERFACE</span>
+					<span class="art-foot">
+						<span class="gate-status" aria-live="polite"><strong id="gate-title">Ready to verify</strong><small id="gate-sub">Agents execute. Professionals conduct. Credentials prove.</small></span>
+					</span>
+				</div>
+			</div>
+		</section>
+		<div class="values"><span>Be Curious.</span><span>Be Caring.</span><span>Be Constructive.</span><span>Be Chill.</span></div>
+	</div>
 
-<!-- APP -->
-<div class="app" id="app" style="display:none">
+	<!-- APP -->
+	<div id="app" hidden>
+		<div class="session">
+			<div class="session-id">
+				<span class="live" aria-hidden="true"></span>
+				<span class="aid" title="EKE4g_0hDGBOqDLKzNBT3kFOPxoP7wXkqt">EKE4g_0h…7wXkqt</span>
+				<span><span class="session-name">Mark · selfdriven</span> <span class="session-role">Foundation Operator</span></span>
+			</div>
+			<div class="session-tools">
+				<span class="chip">KERI secured</span>
+				<button type="button" class="text-button" id="signout">Sign out</button>
+			</div>
+		</div>
 
-  <!-- SIDEBAR -->
-  <aside class="sidebar" id="sidebar">
-    <div class="sb-brand"><div class="sb-logo"><img src="data:image/png;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/4gHYSUNDX1BST0ZJTEUAAQEAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3NwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAA9tYAAQAAAADTLQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAlkZXNjAAAA8AAAACRyWFlaAAABFAAAABRnWFlaAAABKAAAABRiWFlaAAABPAAAABR3dHB0AAABUAAAABRyVFJDAAABZAAAAChnVFJDAAABZAAAAChiVFJDAAABZAAAAChjcHJ0AAABjAAAADxtbHVjAAAAAAAAAAEAAAAMZW5VUwAAAAgAAAAcAHMAUgBHAEJYWVogAAAAAAAAb6IAADj1AAADkFhZWiAAAAAAAABimQAAt4UAABjaWFlaIAAAAAAAACSgAAAPhAAAts9YWVogAAAAAAAA9tYAAQAAAADTLXBhcmEAAAAAAAQAAAACZmYAAPKnAAANWQAAE9AAAApbAAAAAAAAAABtbHVjAAAAAAAAAAEAAAAMZW5VUwAAACAAAAAcAEcAbwBvAGcAbABlACAASQBuAGMALgAgADIAMAAxADb/2wBDAAUDBAQEAwUEBAQFBQUGBwwIBwcHBw8LCwkMEQ8SEhEPERETFhwXExQaFRERGCEYGh0dHx8fExciJCIeJBweHx7/2wBDAQUFBQcGBw4ICA4eFBEUHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh7/wAARCAMgAyADASIAAhEBAxEB/8QAHAABAQEBAAMBAQAAAAAAAAAAAAIBBwUGCAQD/8QAPBABAAIBAwIDAwgLAAICAwAAAAECAwQFEQZRITFhB0GyEiI1NnF0gZMTFhcjMlNVYnPR8DORFUJSobH/xAAbAQEAAwEBAQEAAAAAAAAAAAAAAQUGAgQDB//EADQRAQABAgMDCAoDAQEAAAAAAAABAhEDBAUxUeESEyEyQXGxwQYVFiIzUmGBkaEjNEJDFP/aAAwDAQACEQMRAD8A/kA/On7cAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADxu/btg2rTfKtxfNaP3ePnz9Z9H69vy2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" alt="selfdriven"></div><div class="sb-brand-text"><div class="sb-brand-name">selfdriven.pro</div><div class="sb-brand-sub">professional services</div></div></div>
-    <div class="sb-scroll">
-      <div class="sb-group"><div class="sb-group-label">Services</div>
-        <div class="sb-item active" onclick="nav('home',this)"><div class="sb-icon"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg></div>Home</div>
-        <div class="sb-item" onclick="nav('legal',this)"><div class="sb-icon"><svg viewBox="0 0 24 24"><path d="M12 3v18"/><path d="M5 7l7-4 7 4"/><path d="M5 7l-3 8h6L5 7z"/><path d="M19 7l-3 8h6L19 7z"/></svg></div>Legal</div>
-        <div class="sb-item" onclick="nav('insurance',this)"><div class="sb-icon"><svg viewBox="0 0 24 24"><path d="M12 2L4 6v5c0 5.25 3.4 10.15 8 11.4 4.6-1.25 8-6.15 8-11.4V6l-8-4z"/><polyline points="9,12 11,14 15,10"/></svg></div>Insurance<span class="sb-badge">3</span></div>
-        <div class="sb-item" onclick="nav('accounting',this)"><div class="sb-icon"><svg viewBox="0 0 24 24"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="6" x2="16" y2="6"/><line x1="8" y1="10" x2="16" y2="10"/><line x1="8" y1="14" x2="12" y2="14"/></svg></div>Accounting</div>
-        <div class="sb-item" onclick="nav('compliance',this)"><div class="sb-icon"><svg viewBox="0 0 24 24"><rect x="5" y="4" width="14" height="18" rx="2"/><path d="M9 2h6v3a1 1 0 01-1 1h-4a1 1 0 01-1-1V2z"/><polyline points="9,13 11,15 15,11"/></svg></div>Compliance</div>
-        <div class="sb-item" onclick="nav('property',this)"><div class="sb-icon"><svg viewBox="0 0 24 24"><path d="M3 21h18"/><path d="M5 21V7l7-4 7 4v14"/><rect x="9" y="13" width="6" height="8" rx="0.5"/></svg></div>Property</div>
-        <div class="sb-item" onclick="nav('hr',this)"><div class="sb-icon"><svg viewBox="0 0 24 24"><circle cx="9" cy="7" r="3"/><circle cx="17" cy="8" r="2.5"/><path d="M3 21v-2a4 4 0 014-4h4a4 4 0 014 4v2"/></svg></div>HR &amp; Workforce</div>
-      </div>
-      <div class="sb-group"><div class="sb-group-label">Advisory</div>
-        <div class="sb-item" onclick="nav('advisory',this)"><div class="sb-icon"><svg viewBox="0 0 24 24"><path d="M12 2a7 7 0 00-4 12.7V17h8v-2.3A7 7 0 0012 2z"/><path d="M9 18h6"/><path d="M10 21h4"/></svg></div>Strategy</div>
-        <div class="sb-item" onclick="nav('supply',this)"><div class="sb-icon"><svg viewBox="0 0 24 24"><rect x="1" y="10" width="6" height="6" rx="1"/><rect x="17" y="10" width="6" height="6" rx="1"/><rect x="9" y="4" width="6" height="6" rx="1"/><line x1="7" y1="12" x2="9" y2="12"/><line x1="15" y1="12" x2="17" y2="12"/><line x1="12" y1="10" x2="12" y2="16"/></svg></div>Supply Chain</div>
-        <div class="sb-item" onclick="nav('healthcare',this)"><div class="sb-icon"><svg viewBox="0 0 24 24"><path d="M12 21C12 21 4 14.5 4 9c0-3 2.5-5 5-5 1.5 0 3 1 3 1s1.5-1 3-1c2.5 0 5 2 5 5 0 5.5-8 12-8 12z"/></svg></div>Healthcare</div>
-      </div>
-      <div class="sb-group"><div class="sb-group-label">Identity</div>
-        <div class="sb-item" onclick="nav('identity',this)"><div class="sb-icon"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>KERI Identity</div>
-        <div class="sb-item" onclick="nav('settings',this)"><div class="sb-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9c.2.65.77 1.1 1.45 1.12H21a2 2 0 010 4h-.09c-.68.02-1.25.47-1.45 1.12z"/></svg></div>Settings</div>
-      </div>
-    </div>
-    <div class="sb-footer"><div class="sb-identity"><div class="sb-id-aid"><div class="sb-id-dot"></div>EKE4g_0h . . . 7wXkqt</div><div class="sb-id-name">Mark · selfdriven</div><div class="sb-id-role">Foundation Operator</div></div></div>
-  </aside>
+		<div class="workspace" id="workspace">
+			<nav class="rail" aria-label="Workspace">
+				<p class="rail-label">Workspace</p>
+				<ul><li><button type="button" data-view="home">Home</button></li></ul>
+				<p class="rail-label">Services</p>
+				<ul>
+					<li><button type="button" data-view="legal">Legal</button></li>
+					<li><button type="button" data-view="insurance">Insurance <span class="count" title="3 open claims">3</span></button></li>
+					<li><button type="button" data-view="accounting">Accounting</button></li>
+					<li><button type="button" data-view="compliance">Compliance</button></li>
+					<li><button type="button" data-view="property">Property</button></li>
+					<li><button type="button" data-view="hr">HR &amp; workforce</button></li>
+				</ul>
+				<p class="rail-label">Advisory</p>
+				<ul>
+					<li><button type="button" data-view="advisory">Strategy</button></li>
+					<li><button type="button" data-view="supply">Supply chain</button></li>
+					<li><button type="button" data-view="healthcare">Healthcare</button></li>
+				</ul>
+				<p class="rail-label">Identity</p>
+				<ul>
+					<li><button type="button" data-view="identity">KERI identity</button></li>
+					<li><button type="button" data-view="settings">Settings</button></li>
+				</ul>
+			</nav>
 
-  <!-- MAIN -->
-  <main class="main">
-    <div class="topbar">
-      <div class="tb-left"><button class="mobile-toggle" onclick="document.getElementById('sidebar').classList.toggle('open')"><svg viewBox="0 0 24 24"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button><div class="tb-title" id="pageTitle">Home</div></div>
-      <div class="tb-right"><div class="tb-pill"><svg class="accent" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>KERI Secured</div><button class="tb-btn"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></button><button class="tb-btn"><svg viewBox="0 0 24 24"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 01-3.46 0"/></svg><span class="dot"></span></button><button class="tb-btn" onclick="lock()"><svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg></button></div>
-    </div>
-    <div class="content">
+			<div id="views">
 
-      <!-- HOME -->
-      <div class="view active" id="v-home">
-        <div class="hero">
-          <div class="hero-label">Professional Services Dashboard</div>
-          <div class="hero-amount"><span class="sym"></span>9 Domains Active</div>
-          <div class="hero-sub">14 active requests · 36 agents deployed · 847 credentials verified</div>
-          <div class="hero-actions">
-            <button class="ha-btn primary" onclick="nav('legal',document.querySelectorAll('.sb-item')[1])"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>New Request</button>
-            <button class="ha-btn ghost" onclick="nav('identity',document.querySelectorAll('.sb-item')[9])"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>KERI Identity</button>
-            <button class="ha-btn ghost"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>Credentials</button>
-          </div>
-        </div>
+				<!-- HOME -->
+				<section class="view" id="v-home" aria-labelledby="t-home">
+					<div class="section-heading">
+						<div><p class="eyebrow">Professional services dashboard</p><h2 id="t-home" tabindex="-1">Nine domains active<span>.</span></h2></div>
+						<p class="section-note">14 active requests · 36 agents deployed · 847 credentials verified</p>
+					</div>
+					<div class="stat-grid">
+						<div class="stat tile-dark"><p class="stat-label">Active agents</p><div><p class="stat-value">36</p><p class="stat-note">Across 9 domains</p></div></div>
+						<div class="stat tile-green"><p class="stat-label">Credentials verified</p><div><p class="stat-value">847</p><p class="stat-note">ACDC credential checks</p></div></div>
+						<div class="stat tile-lilac"><p class="stat-label">Requests resolved</p><div><p class="stat-value">142</p><p class="stat-note">This month · 98.2% accuracy</p></div></div>
+					</div>
+					<div class="actions">
+						<button type="button" class="button" data-view="legal">New request <span><svg class="arrow-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6 18 18 6M6 6h12v12"/></svg></span></button>
+						<button type="button" class="text-button" data-view="identity">KERI identity</button>
+						<button type="button" class="text-button" data-view="identity">Credentials</button>
+					</div>
 
-        <div class="g2">
-          <div class="card">
-            <div class="ch"><span class="ct">Active Requests</span><span class="ca">View all</span></div>
-            <div class="stg">
-              <div class="row"><div class="row-ico" style="background:var(--purple-bg);color:var(--purple)"><svg viewBox="0 0 24 24"><path d="M12 3v18"/><path d="M5 7l7-4 7 4"/><path d="M5 7l-3 8h6L5 7z"/><path d="M19 7l-3 8h6L19 7z"/></svg></div><div class="row-info"><div class="row-name">Contract Review — Supplier Agreement</div><div class="row-meta">ContractAnalyst · 3 risk clauses flagged · <span class="keri-badge"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>ACDC</span></div></div><div class="row-right"><div class="row-val" style="color:var(--amber)">In Progress</div><div class="row-sub">2 hours ago</div></div></div>
-              <div class="row"><div class="row-ico" style="background:var(--red-bg);color:var(--red)"><svg viewBox="0 0 24 24"><path d="M12 2L4 6v5c0 5.25 3.4 10.15 8 11.4 4.6-1.25 8-6.15 8-11.4V6l-8-4z"/><polyline points="9,12 11,14 15,10"/></svg></div><div class="row-info"><div class="row-name">Motor Claim #4712</div><div class="row-meta">ClaimIntake · Evidence captured · <span class="pill" style="background:var(--amber-bg);color:var(--amber)">Assessment</span></div></div><div class="row-right"><div class="row-val" style="color:var(--amber)">In Progress</div><div class="row-sub">1 day ago</div></div></div>
-              <div class="row"><div class="row-ico" style="background:var(--green-bg);color:var(--green)"><svg viewBox="0 0 24 24"><rect x="5" y="4" width="14" height="18" rx="2"/><path d="M9 2h6v3a1 1 0 01-1 1h-4a1 1 0 01-1-1V2z"/><polyline points="9,13 11,15 15,11"/></svg></div><div class="row-info"><div class="row-name">Q1 Compliance Report</div><div class="row-meta">AutoReport · 2 items flagged for review</div></div><div class="row-right"><div class="row-val" style="color:var(--green)">Complete</div><div class="row-sub">3 days ago</div></div></div>
-              <div class="row"><div class="row-ico" style="background:var(--amber-bg);color:var(--amber)"><svg viewBox="0 0 24 24"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="6" x2="16" y2="6"/><line x1="8" y1="10" x2="16" y2="10"/></svg></div><div class="row-info"><div class="row-name">Monthly Reconciliation</div><div class="row-meta">LedgerSync · No discrepancies</div></div><div class="row-right"><div class="row-val" style="color:var(--green)">Complete</div><div class="row-sub">1 week ago</div></div></div>
-            </div>
-          </div>
-          <div class="card">
-            <div class="ch"><span class="ct">Recent Agent Activity</span><span class="ca">View all</span></div>
-            <div class="stg">
-              <div class="row"><div class="row-ico" style="background:var(--green-bg);color:var(--green)"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><div class="row-info"><div class="row-name">ContractAnalyst — Clause extraction complete</div><div class="row-meta">Today, 2:14pm · Legal · <span class="keri-badge"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>ACDC</span></div></div></div>
-              <div class="row"><div class="row-ico" style="background:var(--blue-bg);color:var(--blue)"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div><div class="row-info"><div class="row-name">PolicyVerify — Credential chain verified</div><div class="row-meta">Today, 11:30am · Insurance</div></div></div>
-              <div class="row"><div class="row-ico" style="background:var(--amber-bg);color:var(--amber)"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></div><div class="row-info"><div class="row-name">RegWatch — 2 regulatory changes detected</div><div class="row-meta">Yesterday · Compliance · Review needed</div></div></div>
-              <div class="row"><div class="row-ico" style="background:var(--green-bg);color:var(--green)"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div><div class="row-info"><div class="row-name">TitleVerify — Ownership confirmed via KERI</div><div class="row-meta">Mar 5 · Property</div></div></div>
-              <div class="row"><div class="row-ico" style="background:var(--purple-bg);color:var(--purple)"><svg viewBox="0 0 24 24"><circle cx="9" cy="7" r="3"/><path d="M3 21v-2a4 4 0 014-4h4a4 4 0 014 4v2"/></svg></div><div class="row-info"><div class="row-name">CredRecruit — 4 candidate credentials verified</div><div class="row-meta">Mar 4 · HR &amp; Workforce</div></div></div>
-            </div>
-          </div>
-        </div>
+					<div class="groups block">
+						<div class="scope-group">
+							<div class="scope-head">
+								<span class="scope-tag">Requests</span>
+								<h3>In flight.</h3>
+								<p>Agents work each matter. You step in at the decision boundaries.</p>
+							</div>
+							<ul class="scope-list">
+								<li class="pick"><button type="button" class="card-button" data-view="legal"><p class="route">Legal · ContractAnalyst</p><h4>Contract review — supplier agreement</h4><p class="desc">3 risk clauses flagged <span class="acdc">ACDC ✓</span></p><span class="status">In progress <span class="when">· 2 hours ago</span></span></button></li>
+								<li class="pick"><button type="button" class="card-button" data-view="insurance"><p class="route">Insurance · ClaimIntake</p><h4>Motor claim #4712</h4><p class="desc">Evidence captured · In assessment</p><span class="status">In progress <span class="when">· 1 day ago</span></span></button></li>
+								<li class="pick"><button type="button" class="card-button" data-view="compliance"><p class="route">Compliance · AutoReport</p><h4>Q1 compliance report</h4><p class="desc">2 items flagged for review</p><span class="status done">Complete <span class="when">· 3 days ago</span></span></button></li>
+								<li class="pick"><button type="button" class="card-button" data-view="accounting"><p class="route">Accounting · LedgerSync</p><h4>Monthly reconciliation</h4><p class="desc">No discrepancies</p><span class="status done">Complete <span class="when">· 1 week ago</span></span></button></li>
+							</ul>
+						</div>
+						<div class="scope-group">
+							<div class="scope-head">
+								<span class="scope-tag">Agent activity</span>
+								<h3>Recently.</h3>
+								<p>Agents carry their own KERI AIDs, so every action is attributable and auditable.</p>
+							</div>
+							<ul class="scope-list">
+								<li><p class="route">Legal · Today, 2:14pm</p><h4>Clause extraction complete</h4><p>ContractAnalyst <span class="acdc">ACDC ✓</span></p></li>
+								<li><p class="route">Insurance · Today, 11:30am</p><h4>Credential chain verified</h4><p>PolicyVerify</p></li>
+								<li><p class="route">Compliance · Yesterday</p><h4>2 regulatory changes detected</h4><p>RegWatch</p><span class="status">Review needed</span></li>
+								<li><p class="route">Property · Mar 5</p><h4>Ownership confirmed via KERI</h4><p>TitleVerify</p></li>
+								<li><p class="route">HR &amp; workforce · Mar 4</p><h4>4 candidate credentials verified</h4><p>CredRecruit</p></li>
+							</ul>
+						</div>
+					</div>
 
-        <div class="g3">
-          <div class="card stat"><div class="ct" style="margin-bottom:10px">Active Agents</div><div class="stat-val" style="color:var(--accent)">36</div><div class="stat-label">Across 9 domains</div></div>
-          <div class="card stat"><div class="ct" style="margin-bottom:10px">Credentials Verified</div><div class="stat-val" style="color:var(--green)">847</div><div class="stat-label">ACDC credential checks</div></div>
-          <div class="card stat"><div class="ct" style="margin-bottom:10px">Requests Resolved</div><div class="stat-val" style="color:var(--blue)">142</div><div class="stat-label">This month · 98.2% accuracy</div></div>
-        </div>
+					<div class="block">
+						<div class="section-heading">
+							<div><p class="eyebrow">Service domains</p><h2>Choose a domain<span>.</span></h2></div>
+							<p class="section-note">Each domain runs its own agents inside the same trust layer.</p>
+						</div>
+						<div class="domains">
+							<ul class="scope-list domain-list" id="domain-cards"></ul>
+						</div>
+					</div>
+				</section>
 
-        <div class="card">
-          <div class="ch"><span class="ct">Service Domains</span><span class="ca">Manage</span></div>
-          <div class="stg" style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px">
-            <div class="row" style="padding:14px;background:var(--bg);border:1px solid var(--border);border-radius:var(--r-sm);cursor:pointer;flex-direction:column;align-items:center;text-align:center;gap:8px" onclick="nav('legal',document.querySelectorAll('.sb-item')[1])"><div class="row-ico" style="background:var(--purple-bg);color:var(--purple);width:42px;height:42px"><svg viewBox="0 0 24 24"><path d="M12 3v18"/><path d="M5 7l7-4 7 4"/><path d="M5 7l-3 8h6L5 7z"/><path d="M19 7l-3 8h6L19 7z"/></svg></div><div style="font-size:12px;font-weight:600">Legal</div><div style="font-size:10px;color:var(--muted2)">4 agents</div></div>
-            <div class="row" style="padding:14px;background:var(--bg);border:1px solid var(--border);border-radius:var(--r-sm);cursor:pointer;flex-direction:column;align-items:center;text-align:center;gap:8px" onclick="nav('insurance',document.querySelectorAll('.sb-item')[2])"><div class="row-ico" style="background:var(--red-bg);color:var(--red);width:42px;height:42px"><svg viewBox="0 0 24 24"><path d="M12 2L4 6v5c0 5.25 3.4 10.15 8 11.4 4.6-1.25 8-6.15 8-11.4V6l-8-4z"/></svg></div><div style="font-size:12px;font-weight:600">Insurance</div><div style="font-size:10px;color:var(--muted2)">4 agents</div></div>
-            <div class="row" style="padding:14px;background:var(--bg);border:1px solid var(--border);border-radius:var(--r-sm);cursor:pointer;flex-direction:column;align-items:center;text-align:center;gap:8px" onclick="nav('accounting',document.querySelectorAll('.sb-item')[3])"><div class="row-ico" style="background:var(--amber-bg);color:var(--amber);width:42px;height:42px"><svg viewBox="0 0 24 24"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="6" x2="16" y2="6"/><line x1="8" y1="10" x2="16" y2="10"/></svg></div><div style="font-size:12px;font-weight:600">Accounting</div><div style="font-size:10px;color:var(--muted2)">4 agents</div></div>
-            <div class="row" style="padding:14px;background:var(--bg);border:1px solid var(--border);border-radius:var(--r-sm);cursor:pointer;flex-direction:column;align-items:center;text-align:center;gap:8px" onclick="nav('compliance',document.querySelectorAll('.sb-item')[4])"><div class="row-ico" style="background:var(--green-bg);color:var(--green);width:42px;height:42px"><svg viewBox="0 0 24 24"><rect x="5" y="4" width="14" height="18" rx="2"/><polyline points="9,13 11,15 15,11"/></svg></div><div style="font-size:12px;font-weight:600">Compliance</div><div style="font-size:10px;color:var(--muted2)">4 agents</div></div>
-            <div class="row" style="padding:14px;background:var(--bg);border:1px solid var(--border);border-radius:var(--r-sm);cursor:pointer;flex-direction:column;align-items:center;text-align:center;gap:8px" onclick="nav('property',document.querySelectorAll('.sb-item')[5])"><div class="row-ico" style="background:var(--blue-bg);color:var(--blue);width:42px;height:42px"><svg viewBox="0 0 24 24"><path d="M3 21h18"/><path d="M5 21V7l7-4 7 4v14"/><rect x="9" y="13" width="6" height="8" rx="0.5"/></svg></div><div style="font-size:12px;font-weight:600">Property</div><div style="font-size:10px;color:var(--muted2)">4 agents</div></div>
-            <div class="row" style="padding:14px;background:var(--bg);border:1px solid var(--border);border-radius:var(--r-sm);cursor:pointer;flex-direction:column;align-items:center;text-align:center;gap:8px" onclick="nav('hr',document.querySelectorAll('.sb-item')[6])"><div class="row-ico" style="background:var(--purple-bg);color:var(--purple);width:42px;height:42px"><svg viewBox="0 0 24 24"><circle cx="9" cy="7" r="3"/><path d="M3 21v-2a4 4 0 014-4h4a4 4 0 014 4v2"/></svg></div><div style="font-size:12px;font-weight:600">HR</div><div style="font-size:10px;color:var(--muted2)">4 agents</div></div>
-            <div class="row" style="padding:14px;background:var(--bg);border:1px solid var(--border);border-radius:var(--r-sm);cursor:pointer;flex-direction:column;align-items:center;text-align:center;gap:8px" onclick="nav('advisory',document.querySelectorAll('.sb-item')[7])"><div class="row-ico" style="background:var(--pink-bg);color:var(--pink);width:42px;height:42px"><svg viewBox="0 0 24 24"><path d="M12 2a7 7 0 00-4 12.7V17h8v-2.3A7 7 0 0012 2z"/><path d="M9 18h6"/></svg></div><div style="font-size:12px;font-weight:600">Advisory</div><div style="font-size:10px;color:var(--muted2)">4 agents</div></div>
-            <div class="row" style="padding:14px;background:var(--bg);border:1px solid var(--border);border-radius:var(--r-sm);cursor:pointer;flex-direction:column;align-items:center;text-align:center;gap:8px" onclick="nav('supply',document.querySelectorAll('.sb-item')[8])"><div class="row-ico" style="background:var(--sky-bg);color:var(--sky);width:42px;height:42px"><svg viewBox="0 0 24 24"><rect x="1" y="10" width="6" height="6" rx="1"/><rect x="17" y="10" width="6" height="6" rx="1"/><rect x="9" y="4" width="6" height="6" rx="1"/><line x1="7" y1="12" x2="9" y2="12"/><line x1="15" y1="12" x2="17" y2="12"/></svg></div><div style="font-size:12px;font-weight:600">Supply Chain</div><div style="font-size:10px;color:var(--muted2)">4 agents</div></div>
-            <div class="row" style="padding:14px;background:var(--bg);border:1px solid var(--border);border-radius:var(--r-sm);cursor:pointer;flex-direction:column;align-items:center;text-align:center;gap:8px" onclick="nav('healthcare',document.querySelectorAll('.sb-item')[9])"><div class="row-ico" style="background:var(--teal-bg);color:var(--teal);width:42px;height:42px"><svg viewBox="0 0 24 24"><path d="M12 21C12 21 4 14.5 4 9c0-3 2.5-5 5-5 1.5 0 3 1 3 1s1.5-1 3-1c2.5 0 5 2 5 5 0 5.5-8 12-8 12z"/></svg></div><div style="font-size:12px;font-weight:600">Healthcare</div><div style="font-size:10px;color:var(--muted2)">4 agents</div></div>
-          </div>
-        </div>
-      </div>
+				<!-- IDENTITY -->
+				<section class="view" id="v-identity" aria-labelledby="t-identity" hidden>
+					<div class="section-heading">
+						<div><p class="eyebrow">KERI identity</p><h2 id="t-identity" tabindex="-1">Autonomous identifier<span>.</span></h2></div>
+						<p class="section-note">Your professional identity is secured by a self-certifying identifier.</p>
+					</div>
+					<div class="stat-grid">
+						<div class="stat tile-dark"><p class="stat-label">Key events</p><div><p class="stat-value">24</p><p class="stat-note">Key event log</p></div></div>
+						<div class="stat tile-green"><p class="stat-label">Witnesses</p><div><p class="stat-value">3</p><p class="stat-note">Witness pool</p></div></div>
+						<div class="stat tile-lilac"><p class="stat-label">Passkeys</p><div><p class="stat-value">2</p><p class="stat-note">FIDO2</p></div></div>
+					</div>
+					<div class="groups block">
+						<div class="scope-group">
+							<div class="scope-head">
+								<span class="scope-tag">Primary AID</span>
+								<h3>Self-certifying.</h3>
+								<p>Derived from your own keys, not issued by a registry.</p>
+							</div>
+							<p class="aid-box">EKE4g_0hDGBOqDLKzNBT3kFOPxoP7wXkqt</p>
+						</div>
+						<div class="scope-group">
+							<div class="scope-head">
+								<span class="scope-tag">Credentials</span>
+								<h3>Issued ACDCs.</h3>
+								<p>Credentials held by this identifier.</p>
+							</div>
+							<ul class="scope-list">
+								<li><h4>Professional standing</h4><p>selfdriven.foundation</p><span class="status done">Active</span></li>
+								<li><h4>Community membership</h4><p>selfdriven.community</p><span class="status done">Active</span></li>
+								<li><h4>Service authorisation</h4><p>selfdriven.services</p><span class="status done">Active</span></li>
+								<li><h4>Network participant</h4><p>selfdriven.network</p><span class="status done">Active</span></li>
+							</ul>
+						</div>
+					</div>
+				</section>
 
-      <!-- LEGAL SERVICE VIEW (template for all service views) -->
-      <div class="view" id="v-legal">
-        <div class="hero"><div class="hero-label">Legal Services</div><div class="hero-amount" style="font-size:28px">Contract Review · Regulatory Mapping · Dispute Resolution</div><div class="hero-sub">4 agents active · 12 requests this month · All credentials verified via ACDC</div></div>
-        <div class="g2">
-          <div class="card"><div class="ch"><span class="ct">Talk to Legal Agent</span></div>
-            <div class="qa-row"><button class="qa-btn" onclick="addMsg('legal','Review a contract')">Review a contract</button><button class="qa-btn" onclick="addMsg('legal','Draft an agreement')">Draft agreement</button><button class="qa-btn" onclick="addMsg('legal','Check regulations')">Check regulations</button><button class="qa-btn" onclick="addMsg('legal','Dispute support')">Dispute support</button></div>
-            <div class="chat-area" id="chat-legal"><div class="msg msg-agent"><div class="msg-avatar" style="background:var(--purple-bg);color:var(--purple)"><svg viewBox="0 0 24 24"><path d="M12 3v18"/><path d="M5 7l7-4 7 4"/><path d="M5 7l-3 8h6L5 7z"/><path d="M19 7l-3 8h6L19 7z"/></svg></div><div><div class="msg-header"><span class="name" style="color:var(--purple)">ContractAnalyst</span><span class="badge">ACDC ✓</span></div><div class="msg-bubble">Welcome to Legal services. I can review contracts, map regulatory frameworks, draft agreements, and support dispute resolution. All interactions are secured by your KERI identity. How can I help?</div></div></div></div>
-            <div class="chat-input-row"><input class="chat-input" id="input-legal" placeholder="Ask your legal agent..." onkeydown="if(event.key==='Enter')sendChat('legal')"><button class="chat-send" onclick="sendChat('legal')">Send</button></div>
-          </div>
-          <div class="card"><div class="ch"><span class="ct">Legal Agents</span></div><div class="stg">
-            <div class="row"><div class="row-ico" style="background:var(--purple-bg);color:var(--purple)"><svg viewBox="0 0 24 24"><path d="M12 3v18"/><path d="M5 7l7-4 7 4"/></svg></div><div class="row-info"><div class="row-name">ContractAnalyst</div><div class="row-meta">Contract review &amp; clause extraction</div></div><div class="row-right"><div class="row-val" style="color:var(--green)">Active</div><div class="row-sub">97.2% accuracy</div></div></div>
-            <div class="row"><div class="row-ico" style="background:var(--blue-bg);color:var(--blue)"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15 15 0 014 10 15 15 0 01-4 10 15 15 0 01-4-10 15 15 0 014-10z"/></svg></div><div class="row-info"><div class="row-name">RegMapper</div><div class="row-meta">Regulatory landscape mapping</div></div><div class="row-right"><div class="row-val" style="color:var(--green)">Active</div><div class="row-sub">94.8% accuracy</div></div></div>
-            <div class="row"><div class="row-ico" style="background:var(--amber-bg);color:var(--amber)"><svg viewBox="0 0 24 24"><path d="M18 20V10"/><path d="M12 20V4"/><path d="M6 20v-6"/></svg></div><div class="row-info"><div class="row-name">DisputeNav</div><div class="row-meta">Dispute resolution coordinator</div></div><div class="row-right"><div class="row-val" style="color:var(--muted2)">Idle</div><div class="row-sub">96.1% accuracy</div></div></div>
-            <div class="row"><div class="row-ico" style="background:var(--green-bg);color:var(--green)"><svg viewBox="0 0 24 24"><rect x="5" y="4" width="14" height="18" rx="2"/><polyline points="9,13 11,15 15,11"/></svg></div><div class="row-info"><div class="row-name">ComplianceWatch</div><div class="row-meta">Legal compliance monitoring</div></div><div class="row-right"><div class="row-val" style="color:var(--green)">Active</div><div class="row-sub">98.3% accuracy</div></div></div>
-          </div></div>
-        </div>
-      </div>
+				<!-- SETTINGS -->
+				<section class="view" id="v-settings" aria-labelledby="t-settings" hidden>
+					<div class="section-heading">
+						<div><p class="eyebrow">Settings</p><h2 id="t-settings" tabindex="-1">Security and details<span>.</span></h2></div>
+					</div>
+					<div class="groups">
+						<div class="scope-group">
+							<div class="scope-head">
+								<span class="scope-tag">Security</span>
+								<h3>Authentication.</h3>
+								<p>How you confirm actions and keep your keys current.</p>
+							</div>
+							<ul class="settings">
+								<li class="setting"><div><h4 id="s1">Passkey required for actions</h4><p>Biometric confirmation for agent dispatching</p></div><button type="button" class="switch" role="switch" aria-checked="true" aria-labelledby="s1"></button></li>
+								<li class="setting"><div><h4 id="s2">KERI key rotation</h4><p>Automatic pre-rotated key activation every 180 days</p></div><button type="button" class="switch" role="switch" aria-checked="true" aria-labelledby="s2"></button></li>
+								<li class="setting"><div><h4 id="s3">Agent activity notifications</h4><p>Push notification for every agent action and credential event</p></div><button type="button" class="switch" role="switch" aria-checked="true" aria-labelledby="s3"></button></li>
+							</ul>
+						</div>
+						<div class="scope-group">
+							<div class="scope-head">
+								<span class="scope-tag">Details</span>
+								<h3>You.</h3>
+								<p>Personal details attached to this identifier.</p>
+							</div>
+							<dl class="details">
+								<div><dt>Full name</dt><dd>Mark Byers</dd></div>
+								<div><dt>Organisation</dt><dd>selfdriven Foundation</dd></div>
+								<div><dt>Email</dt><dd>mark@selfdriven.foundation</dd></div>
+								<div><dt>Role</dt><dd>Foundation Operator</dd></div>
+							</dl>
+						</div>
+					</div>
+				</section>
 
-      <!-- KERI IDENTITY -->
-      <div class="view" id="v-identity">
-        <div class="card" style="margin-bottom:18px">
-          <div style="display:flex;align-items:center;gap:14px;margin-bottom:20px"><div style="width:48px;height:48px;background:var(--accent-dim);border:1px solid rgba(200,68,47,0.2);border-radius:var(--r);display:grid;place-items:center;color:var(--accent)"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div><div><div style="font-size:17px;font-weight:700">KERI Autonomous Identifier</div><div style="font-size:12px;color:var(--muted)">Your professional identity is secured by a self-certifying identifier</div></div></div>
-          <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:18px">
-            <div style="background:var(--bg);border:1px solid var(--border);border-radius:var(--r-sm);padding:14px;text-align:center"><div style="font-family:'JetBrains Mono';font-size:22px;font-weight:500;color:var(--accent);margin-bottom:4px">24</div><div style="font-size:11px;color:var(--muted2);font-weight:600">Key Events</div></div>
-            <div style="background:var(--bg);border:1px solid var(--border);border-radius:var(--r-sm);padding:14px;text-align:center"><div style="font-family:'JetBrains Mono';font-size:22px;font-weight:500;color:var(--blue);margin-bottom:4px">3</div><div style="font-size:11px;color:var(--muted2);font-weight:600">Witnesses</div></div>
-            <div style="background:var(--bg);border:1px solid var(--border);border-radius:var(--r-sm);padding:14px;text-align:center"><div style="font-family:'JetBrains Mono';font-size:22px;font-weight:500;color:var(--green);margin-bottom:4px">2</div><div style="font-size:11px;color:var(--muted2);font-weight:600">Passkeys</div></div>
-          </div>
-          <div style="margin-bottom:16px"><div style="font-size:10px;color:var(--muted2);text-transform:uppercase;font-weight:700;letter-spacing:0.12em;margin-bottom:6px">Primary AID</div><div style="font-family:'JetBrains Mono';font-size:13px;color:var(--accent);background:var(--bg);padding:12px;border-radius:var(--r-sm);border:1px solid var(--border);word-break:break-all">EKE4g_0hDGBOqDLKzNBT3kFOPxoP7wXkqt</div></div>
-          <div style="font-size:10px;color:var(--muted2);text-transform:uppercase;font-weight:700;letter-spacing:0.12em;margin-bottom:8px">Issued ACDC Credentials</div>
-          <div style="border:1px solid var(--border);border-radius:var(--r-sm);overflow:hidden">
-            <div style="display:flex;align-items:center;gap:10px;padding:10px 12px;border-bottom:1px solid var(--border);font-size:12px"><span style="font-family:'JetBrains Mono';font-size:10px;font-weight:600;padding:3px 8px;border-radius:4px;background:var(--green-bg);color:var(--green)">active</span><span style="flex:1;color:var(--muted)">Professional Standing — selfdriven.foundation</span></div>
-            <div style="display:flex;align-items:center;gap:10px;padding:10px 12px;border-bottom:1px solid var(--border);font-size:12px"><span style="font-family:'JetBrains Mono';font-size:10px;font-weight:600;padding:3px 8px;border-radius:4px;background:var(--green-bg);color:var(--green)">active</span><span style="flex:1;color:var(--muted)">Community Membership — selfdriven.community</span></div>
-            <div style="display:flex;align-items:center;gap:10px;padding:10px 12px;border-bottom:1px solid var(--border);font-size:12px"><span style="font-family:'JetBrains Mono';font-size:10px;font-weight:600;padding:3px 8px;border-radius:4px;background:var(--green-bg);color:var(--green)">active</span><span style="flex:1;color:var(--muted)">Service Authorisation — selfdriven.services</span></div>
-            <div style="display:flex;align-items:center;gap:10px;padding:10px 12px;font-size:12px"><span style="font-family:'JetBrains Mono';font-size:10px;font-weight:600;padding:3px 8px;border-radius:4px;background:var(--green-bg);color:var(--green)">active</span><span style="flex:1;color:var(--muted)">Network Participant — selfdriven.network</span></div>
-          </div>
-        </div>
-      </div>
+				<!-- Domain views are built from DOMAINS below -->
+			</div>
+		</div>
+	</div>
+</main>
 
-      <!-- SETTINGS -->
-      <div class="view" id="v-settings">
-        <div class="card" style="margin-bottom:18px"><div style="font-size:15px;font-weight:700;margin-bottom:14px;padding-bottom:10px;border-bottom:1px solid var(--border)">Security &amp; Authentication</div><div class="stg">
-          <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 0;border-bottom:1px solid var(--border)"><div><div style="font-size:13px;font-weight:600">Passkey Required for Actions</div><div style="font-size:11px;color:var(--muted2);margin-top:1px">Biometric confirmation for agent dispatching</div></div><div style="width:42px;height:22px;border-radius:11px;background:var(--accent);cursor:pointer;position:relative"><div style="position:absolute;top:2px;left:20px;width:18px;height:18px;border-radius:50%;background:white"></div></div></div>
-          <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 0;border-bottom:1px solid var(--border)"><div><div style="font-size:13px;font-weight:600">KERI Key Rotation</div><div style="font-size:11px;color:var(--muted2);margin-top:1px">Automatic pre-rotated key activation every 180 days</div></div><div style="width:42px;height:22px;border-radius:11px;background:var(--accent);cursor:pointer;position:relative"><div style="position:absolute;top:2px;left:20px;width:18px;height:18px;border-radius:50%;background:white"></div></div></div>
-          <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 0"><div><div style="font-size:13px;font-weight:600">Agent Activity Notifications</div><div style="font-size:11px;color:var(--muted2);margin-top:1px">Push notification for every agent action and credential event</div></div><div style="width:42px;height:22px;border-radius:11px;background:var(--accent);cursor:pointer;position:relative"><div style="position:absolute;top:2px;left:20px;width:18px;height:18px;border-radius:50%;background:white"></div></div></div>
-        </div></div>
-        <div class="card"><div style="font-size:15px;font-weight:700;margin-bottom:14px;padding-bottom:10px;border-bottom:1px solid var(--border)">Personal Details</div><div style="display:grid;grid-template-columns:1fr 1fr;gap:12px"><div><div style="font-size:11px;color:var(--muted2);margin-bottom:3px">Full Name</div><div style="font-size:13px;font-weight:500">Mark Byers</div></div><div><div style="font-size:11px;color:var(--muted2);margin-bottom:3px">Organisation</div><div style="font-size:13px">selfdriven Foundation</div></div><div><div style="font-size:11px;color:var(--muted2);margin-bottom:3px">Email</div><div style="font-size:13px">mark@selfdriven.foundation</div></div><div><div style="font-size:11px;color:var(--muted2);margin-bottom:3px">Role</div><div style="font-size:13px">Foundation Operator</div></div></div></div>
-      </div>
-
-      <!-- Placeholder views for other services -->
-      <div class="view" id="v-insurance"><div class="hero"><div class="hero-label">Insurance Services</div><div class="hero-amount" style="font-size:28px">Claims · Risk Assessment · Policy Management</div><div class="hero-sub">4 agents active · 3 open claims · All policy credentials verified</div></div><div class="card"><div class="ch"><span class="ct">Talk to Insurance Agent</span></div><div class="qa-row"><button class="qa-btn" onclick="addMsg('insurance','Submit a claim')">Submit a claim</button><button class="qa-btn" onclick="addMsg('insurance','Check my policy')">Check policy</button><button class="qa-btn" onclick="addMsg('insurance','Risk assessment')">Risk assessment</button></div><div class="chat-area" id="chat-insurance"><div class="msg msg-agent"><div class="msg-avatar" style="background:var(--red-bg);color:var(--red)"><svg viewBox="0 0 24 24"><path d="M12 2L4 6v5c0 5.25 3.4 10.15 8 11.4 4.6-1.25 8-6.15 8-11.4V6l-8-4z"/></svg></div><div><div class="msg-header"><span class="name" style="color:var(--red)">ClaimIntake</span><span class="badge">ACDC ✓</span></div><div class="msg-bubble">Welcome to Insurance services. I handle claims intake, evidence capture, and assessment. How can I assist you?</div></div></div></div><div class="chat-input-row"><input class="chat-input" id="input-insurance" placeholder="Ask your insurance agent..." onkeydown="if(event.key==='Enter')sendChat('insurance')"><button class="chat-send" onclick="sendChat('insurance')">Send</button></div></div></div>
-      <div class="view" id="v-accounting"><div class="hero"><div class="hero-label">Accounting &amp; Audit</div><div class="hero-amount" style="font-size:28px">Reconciliation · Anomaly Detection · Reporting</div><div class="hero-sub">4 agents active · Continuous audit running</div></div><div class="card"><div class="ch"><span class="ct">Talk to Accounting Agent</span></div><div class="qa-row"><button class="qa-btn" onclick="addMsg('accounting','Reconcile accounts')">Reconcile</button><button class="qa-btn" onclick="addMsg('accounting','Generate report')">Generate report</button><button class="qa-btn" onclick="addMsg('accounting','Scan anomalies')">Anomaly scan</button></div><div class="chat-area" id="chat-accounting"><div class="msg msg-agent"><div class="msg-avatar" style="background:var(--amber-bg);color:var(--amber)"><svg viewBox="0 0 24 24"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="6" x2="16" y2="6"/></svg></div><div><div class="msg-header"><span class="name" style="color:var(--amber)">LedgerSync</span><span class="badge">ACDC ✓</span></div><div class="msg-bubble">Welcome to Accounting services. I manage real-time reconciliation, anomaly detection, and financial reporting. How can I help?</div></div></div></div><div class="chat-input-row"><input class="chat-input" id="input-accounting" placeholder="Ask your accounting agent..." onkeydown="if(event.key==='Enter')sendChat('accounting')"><button class="chat-send" onclick="sendChat('accounting')">Send</button></div></div></div>
-      <div class="view" id="v-compliance"><div class="hero"><div class="hero-label">Regulatory &amp; Compliance</div><div class="hero-amount" style="font-size:28px">Monitoring · Gap Analysis · Automated Reporting</div><div class="hero-sub">4 agents active · 12 regulations tracked</div></div><div class="card"><div class="ch"><span class="ct">Talk to Compliance Agent</span></div><div class="qa-row"><button class="qa-btn" onclick="addMsg('compliance','Run compliance check')">Compliance check</button><button class="qa-btn" onclick="addMsg('compliance','Gap analysis')">Gap analysis</button><button class="qa-btn" onclick="addMsg('compliance','Regulatory updates')">Reg updates</button></div><div class="chat-area" id="chat-compliance"><div class="msg msg-agent"><div class="msg-avatar" style="background:var(--green-bg);color:var(--green)"><svg viewBox="0 0 24 24"><rect x="5" y="4" width="14" height="18" rx="2"/><polyline points="9,13 11,15 15,11"/></svg></div><div><div class="msg-header"><span class="name" style="color:var(--green)">RegWatch</span><span class="badge">ACDC ✓</span></div><div class="msg-bubble">Welcome to Compliance services. I monitor regulatory changes, analyse gaps, and generate compliance reports. How can I assist?</div></div></div></div><div class="chat-input-row"><input class="chat-input" id="input-compliance" placeholder="Ask your compliance agent..." onkeydown="if(event.key==='Enter')sendChat('compliance')"><button class="chat-send" onclick="sendChat('compliance')">Send</button></div></div></div>
-      <div class="view" id="v-property"><div class="hero"><div class="hero-label">Real Estate &amp; Property</div><div class="hero-amount" style="font-size:28px">Title Verification · Settlement · Valuation</div><div class="hero-sub">4 agents active · KERI-anchored ownership records</div></div><div class="card"><div class="ch"><span class="ct">Talk to Property Agent</span></div><div class="qa-row"><button class="qa-btn" onclick="addMsg('property','Verify a title')">Verify title</button><button class="qa-btn" onclick="addMsg('property','Settlement help')">Settlement</button><button class="qa-btn" onclick="addMsg('property','Property valuation')">Valuation</button></div><div class="chat-area" id="chat-property"><div class="msg msg-agent"><div class="msg-avatar" style="background:var(--blue-bg);color:var(--blue)"><svg viewBox="0 0 24 24"><path d="M3 21h18"/><path d="M5 21V7l7-4 7 4v14"/></svg></div><div><div class="msg-header"><span class="name" style="color:var(--blue)">TitleVerify</span><span class="badge">ACDC ✓</span></div><div class="msg-bubble">Welcome to Property services. I handle title verification, settlement coordination, and valuations. All records are KERI-anchored. How can I help?</div></div></div></div><div class="chat-input-row"><input class="chat-input" id="input-property" placeholder="Ask your property agent..." onkeydown="if(event.key==='Enter')sendChat('property')"><button class="chat-send" onclick="sendChat('property')">Send</button></div></div></div>
-      <div class="view" id="v-hr"><div class="hero"><div class="hero-label">HR &amp; Workforce</div><div class="hero-amount" style="font-size:28px">Recruitment · Credentials · Onboarding · CPD</div><div class="hero-sub">4 agents active · Portable ACDC credentials</div></div><div class="card"><div class="ch"><span class="ct">Talk to HR Agent</span></div><div class="qa-row"><button class="qa-btn" onclick="addMsg('hr','Verify credentials')">Verify credentials</button><button class="qa-btn" onclick="addMsg('hr','Start onboarding')">Onboarding</button><button class="qa-btn" onclick="addMsg('hr','Track CPD')">Track CPD</button></div><div class="chat-area" id="chat-hr"><div class="msg msg-agent"><div class="msg-avatar" style="background:var(--purple-bg);color:var(--purple)"><svg viewBox="0 0 24 24"><circle cx="9" cy="7" r="3"/><path d="M3 21v-2a4 4 0 014-4h4a4 4 0 014 4v2"/></svg></div><div><div class="msg-header"><span class="name" style="color:var(--purple)">CredRecruit</span><span class="badge">ACDC ✓</span></div><div class="msg-bubble">Welcome to HR services. I verify professional credentials, manage onboarding, and track continuing development. How can I assist?</div></div></div></div><div class="chat-input-row"><input class="chat-input" id="input-hr" placeholder="Ask your HR agent..." onkeydown="if(event.key==='Enter')sendChat('hr')"><button class="chat-send" onclick="sendChat('hr')">Send</button></div></div></div>
-      <div class="view" id="v-advisory"><div class="hero"><div class="hero-label">Advisory &amp; Strategy</div><div class="hero-amount" style="font-size:28px">Strategic Analysis · Expert Matching · Knowledge Capture</div><div class="hero-sub">4 agents active · ACDC-verified expertise</div></div><div class="card"><div class="ch"><span class="ct">Talk to Advisory Agent</span></div><div class="qa-row"><button class="qa-btn" onclick="addMsg('advisory','Strategic review')">Strategic review</button><button class="qa-btn" onclick="addMsg('advisory','Find an expert')">Find expert</button><button class="qa-btn" onclick="addMsg('advisory','Capture insights')">Capture insights</button></div><div class="chat-area" id="chat-advisory"><div class="msg msg-agent"><div class="msg-avatar" style="background:var(--pink-bg);color:var(--pink)"><svg viewBox="0 0 24 24"><path d="M12 2a7 7 0 00-4 12.7V17h8v-2.3A7 7 0 0012 2z"/><path d="M9 18h6"/></svg></div><div><div class="msg-header"><span class="name" style="color:var(--pink)">StrategyAI</span><span class="badge">ACDC ✓</span></div><div class="msg-bubble">Welcome to Advisory services. I provide strategic analysis and expert matching with verified credentials. How can I help?</div></div></div></div><div class="chat-input-row"><input class="chat-input" id="input-advisory" placeholder="Ask your advisory agent..." onkeydown="if(event.key==='Enter')sendChat('advisory')"><button class="chat-send" onclick="sendChat('advisory')">Send</button></div></div></div>
-      <div class="view" id="v-supply"><div class="hero"><div class="hero-label">Supply Chain &amp; Trade</div><div class="hero-amount" style="font-size:28px">Provenance · Trade Finance · Logistics · Customs</div><div class="hero-sub">4 agents active · KERI-anchored participant identity</div></div><div class="card"><div class="ch"><span class="ct">Talk to Supply Chain Agent</span></div><div class="qa-row"><button class="qa-btn" onclick="addMsg('supply','Track provenance')">Track provenance</button><button class="qa-btn" onclick="addMsg('supply','Trade documents')">Trade docs</button><button class="qa-btn" onclick="addMsg('supply','Optimise logistics')">Optimise logistics</button></div><div class="chat-area" id="chat-supply"><div class="msg msg-agent"><div class="msg-avatar" style="background:var(--sky-bg);color:var(--sky)"><svg viewBox="0 0 24 24"><rect x="1" y="10" width="6" height="6" rx="1"/><rect x="17" y="10" width="6" height="6" rx="1"/><rect x="9" y="4" width="6" height="6" rx="1"/></svg></div><div><div class="msg-header"><span class="name" style="color:var(--sky)">ProvenanceTrack</span><span class="badge">ACDC ✓</span></div><div class="msg-bubble">Welcome to Supply Chain services. I track provenance, process trade documentation, and optimise logistics. How can I assist?</div></div></div></div><div class="chat-input-row"><input class="chat-input" id="input-supply" placeholder="Ask your supply chain agent..." onkeydown="if(event.key==='Enter')sendChat('supply')"><button class="chat-send" onclick="sendChat('supply')">Send</button></div></div></div>
-      <div class="view" id="v-healthcare"><div class="hero"><div class="hero-label">Healthcare Administration</div><div class="hero-amount" style="font-size:28px">Care Coordination · Claims · Consent Management</div><div class="hero-sub">4 agents active · Patient identity anchored in KERI</div></div><div class="card"><div class="ch"><span class="ct">Talk to Healthcare Agent</span></div><div class="qa-row"><button class="qa-btn" onclick="addMsg('healthcare','Coordinate referral')">Referral</button><button class="qa-btn" onclick="addMsg('healthcare','Pre-authorise claim')">Pre-authorise</button><button class="qa-btn" onclick="addMsg('healthcare','Manage consent')">Consent</button></div><div class="chat-area" id="chat-healthcare"><div class="msg msg-agent"><div class="msg-avatar" style="background:var(--teal-bg);color:var(--teal)"><svg viewBox="0 0 24 24"><path d="M12 21C12 21 4 14.5 4 9c0-3 2.5-5 5-5 1.5 0 3 1 3 1s1.5-1 3-1c2.5 0 5 2 5 5 0 5.5-8 12-8 12z"/></svg></div><div><div class="msg-header"><span class="name" style="color:var(--teal)">CareCoord</span><span class="badge">ACDC ✓</span></div><div class="msg-bubble">Welcome to Healthcare services. I coordinate referrals, manage consent records, and handle pre-authorisation. How can I help?</div></div></div></div><div class="chat-input-row"><input class="chat-input" id="input-healthcare" placeholder="Ask your healthcare agent..." onkeydown="if(event.key==='Enter')sendChat('healthcare')"><button class="chat-send" onclick="sendChat('healthcare')">Send</button></div></div></div>
-
-    </div>
-  </main>
-</div>
+	<footer class="footer">
+		<div class="footer-left">
+			<a href="https://selfdriven.foundation" target="_blank" rel="noopener"><img src="/assets/img/selfdriven-logo-white-transparent.svg" alt="selfdriven" width="170" height="37"></a>
+			<p>Professional services anchored in verified identity. Conducted by people, executed by agents.</p>
+		</div>
+		<div class="footer-cols">
+			<div class="footer-col">
+				<p class="footer-head">About</p>
+				<a href="/framework">Framework</a>
+				<a href="/interfaces/human">Human Interface</a>
+				<a href="https://github.com/selfdriven-foundation/selfdriven-pro" target="_blank" rel="noopener">GitHub</a>
+			</div>
+			<div class="footer-col">
+				<p class="footer-head">Contributors</p>
+				<a href="https://selfdriven.foundation" target="_blank" rel="noopener">selfdriven.foundation</a>
+				<a href="https://selfdriven.community" target="_blank" rel="noopener">selfdriven.community</a>
+				<a href="https://selfdriven.services" target="_blank" rel="noopener">selfdriven.services</a>
+			</div>
+			<div class="footer-col">
+				<p class="footer-head">Related</p>
+				<a href="https://selfdriven.network" target="_blank" rel="noopener">selfdriven.network</a>
+				<a href="https://selfdriven.ai" target="_blank" rel="noopener">selfdriven.ai</a>
+				<a href="https://selfdriven.money" target="_blank" rel="noopener">selfdriven.money</a>
+				<a href="https://selfdriven.finance" target="_blank" rel="noopener">selfdriven.finance</a>
+				<a href="https://selfdriven.healthcare" target="_blank" rel="noopener">selfdriven.healthcare</a>
+			</div>
+		</div>
+		<p class="footer-line">Identity-native professionals. Agent-conducted work.</p>
+	</footer>
 
 <script>
-const RESP={legal:["I've initiated a contract analysis workflow. I'll extract key clauses, flag risk areas, and verify all counterparty credentials via ACDC.","I've mapped the applicable regulatory framework. Three key regulations apply. Summary prepared with compliance requirements.","Dispute analysis initiated. Reviewing documentation and credential chains for a position summary."],insurance:["Claim intake initiated. I'll guide you through evidence capture and verify your policy credentials via ACDC.","Policy review complete. 4 active policies found with coverage summaries prepared.","Risk assessment model running. Analysing asset profile and historical claim data."],accounting:["Running real-time ledger reconciliation. Cross-referencing all transaction records and flagging discrepancies.","Financial report generated. Revenue tracking, expense categorisation, and cash flow analysis included.","Anomaly scan complete. 3 transactions flagged with confidence scores and recommended actions."],compliance:["Compliance check running across all applicable frameworks. Monitoring 12 active regulations.","Gap analysis complete. 4 areas identified where current practices need alignment. Severity ratings included.","Regulatory monitoring shows 2 recent changes. Impact assessments and recommended updates prepared."],property:["Title verification initiated. Checking ownership history and credential chains via KERI-anchored records.","Settlement coordination started. All parties identified, KERI identities verified, conditions prepared.","Valuation analysis underway. Reviewing comparable sales and market conditions."],hr:["Credential verification initiated. Checking ACDC credentials against issuing authorities.","Onboarding workflow prepared. Credential requests and orientation materials generated.","CPD tracking updated. 42 hours verified this year. 3 upcoming opportunities identified."],advisory:["Strategic analysis initiated. Gathering market intelligence and analysing competitive positioning.","Expert matching in progress. Searching ACDC-verified credentials for qualified advisors.","Knowledge capture started. Synthesising insights and building organisational knowledge base."],supply:["Provenance tracking activated. Tracing full supply chain with KERI AID verification at each stage.","Trade finance documentation being processed. Verifying participant credentials and preparing letters of credit.","Logistics optimisation complete. 3 alternative routes identified with cost-time trade-offs."],healthcare:["Referral coordination initiated. Verifying provider credentials and preparing referral package.","Pre-authorisation submitted. Policy credentials verified, clinical documentation prepared.","Consent records retrieved. 7 active consent grants across 3 providers."]}; 
-const AGENTS={legal:["ContractAnalyst","RegMapper","DisputeNav"],insurance:["ClaimIntake","RiskEngine","PolicyVerify"],accounting:["LedgerSync","AnomalyHound","AuditTrail"],compliance:["RegWatch","GapAnalyst","AutoReport"],property:["TitleVerify","SettleBot","ValuationAI"],hr:["CredRecruit","OnboardFlow","SkillTrack"],advisory:["StrategyAI","ExpertMatch","KnowledgeCapture"],supply:["ProvenanceTrack","TradeFinance","LogisticsOpt"],healthcare:["CareCoord","ConsentGuard","ClaimsBot"]};
-function pick(a){return a[Math.floor(Math.random()*a.length)]}
-function addMsg(svc,text){
-  const el=document.getElementById('chat-'+svc);const inp=document.getElementById('input-'+svc);
-  if(inp)inp.value='';
-  el.innerHTML+=`<div class="msg msg-user"><div class="msg-bubble">${text}</div></div>`;
-  el.scrollTop=el.scrollHeight;
-  setTimeout(()=>{
-    const r=pick(RESP[svc]||["I'm processing your request."]);const a=pick(AGENTS[svc]||["Agent"]);
-    el.innerHTML+=`<div class="msg msg-agent"><div class="msg-avatar" style="background:var(--accent-dim);color:var(--accent)"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div><div><div class="msg-header"><span class="name" style="color:var(--accent)">${a}</span><span class="badge">ACDC ✓</span></div><div class="msg-bubble">${r}</div></div></div>`;
-    el.scrollTop=el.scrollHeight;
-  },1200+Math.random()*1500);
-}
-function sendChat(svc){const inp=document.getElementById('input-'+svc);if(inp&&inp.value.trim()){addMsg(svc,inp.value.trim())}}
-function doAuth(){const b=document.getElementById('bio');b.classList.add('on');setTimeout(()=>{b.querySelector('.bio-text').textContent='Identity verified';b.querySelector('.bio-sub').textContent='KERI key event confirmed · Loading your services...';b.querySelector('.bio-ring').style.borderColor='var(--green)';b.querySelector('.bio-ring').style.animation='none';},1800);setTimeout(()=>{b.classList.remove('on');document.getElementById('auth').classList.add('hidden');document.getElementById('app').style.display='flex';},2800)}
-function lock(){document.getElementById('app').style.display='none';document.getElementById('auth').classList.remove('hidden')}
-const vm={home:'v-home',legal:'v-legal',insurance:'v-insurance',accounting:'v-accounting',compliance:'v-compliance',property:'v-property',hr:'v-hr',advisory:'v-advisory',supply:'v-supply',healthcare:'v-healthcare',identity:'v-identity',settings:'v-settings'};
-const tm={home:'Home',legal:'Legal Services',insurance:'Insurance',accounting:'Accounting & Audit',compliance:'Compliance',property:'Property',hr:'HR & Workforce',advisory:'Advisory & Strategy',supply:'Supply Chain',healthcare:'Healthcare',identity:'KERI Identity',settings:'Settings'};
-function nav(id,el){document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));document.querySelectorAll('.sb-item').forEach(i=>i.classList.remove('active'));const v=document.getElementById(vm[id]);if(v)v.classList.add('active');if(el)el.classList.add('active');document.getElementById('pageTitle').textContent=tm[id]||id;document.getElementById('sidebar').classList.remove('open')}
+(function () {
+	'use strict';
+
+	var DOMAINS = {
+		legal: {
+			label: 'Legal services', lines: 'Contract review · Regulatory mapping · Dispute resolution',
+			sub: '4 agents active · 12 requests this month · All credentials verified via ACDC',
+			about: 'AI-driven contract analysis, clause extraction and regulatory mapping. Attorney credentials verified via ACDC, with programmable enforcement and dispute resolution.',
+			lead: 'ContractAnalyst', agents: ['ContractAnalyst', 'RegMapper', 'DisputeNav'],
+			welcome: 'Welcome to Legal services. I can review contracts, map regulatory frameworks, draft agreements, and support dispute resolution. All interactions are secured by your KERI identity. How can I help?',
+			quick: [['Review a contract', 'Review a contract'], ['Draft agreement', 'Draft an agreement'], ['Check regulations', 'Check regulations'], ['Dispute support', 'Dispute support']],
+			responses: ["I've initiated a contract analysis workflow. I'll extract key clauses, flag risk areas, and verify all counterparty credentials via ACDC.", "I've mapped the applicable regulatory framework. Three key regulations apply. Summary prepared with compliance requirements.", 'Dispute analysis initiated. Reviewing documentation and credential chains for a position summary.'],
+			roster: [
+				['ContractAnalyst', 'Contract review & clause extraction', 'Active', '97.2% accuracy'],
+				['RegMapper', 'Regulatory landscape mapping', 'Active', '94.8% accuracy'],
+				['DisputeNav', 'Dispute resolution coordinator', 'Idle', '96.1% accuracy'],
+				['ComplianceWatch', 'Legal compliance monitoring', 'Active', '98.3% accuracy']
+			]
+		},
+		insurance: {
+			label: 'Insurance', lines: 'Claims · Risk assessment · Policy management',
+			sub: '4 agents active · 3 open claims · All policy credentials verified',
+			about: 'Claims intake, evidence capture and assessment powered by agents. Claimant identity and policy credentials verified via ACDC, with transparent risk models.',
+			lead: 'ClaimIntake', agents: ['ClaimIntake', 'RiskEngine', 'PolicyVerify'],
+			welcome: 'Welcome to Insurance services. I handle claims intake, evidence capture, and assessment. How can I assist you?',
+			quick: [['Submit a claim', 'Submit a claim'], ['Check policy', 'Check my policy'], ['Risk assessment', 'Risk assessment']],
+			responses: ["Claim intake initiated. I'll guide you through evidence capture and verify your policy credentials via ACDC.", 'Policy review complete. 4 active policies found with coverage summaries prepared.', 'Risk assessment model running. Analysing asset profile and historical claim data.']
+		},
+		accounting: {
+			label: 'Accounting & audit', lines: 'Reconciliation · Anomaly detection · Reporting',
+			sub: '4 agents active · Continuous audit running',
+			about: 'Continuous autonomous audit through agents with verifiable access credentials. Real-time reconciliation, anomaly detection and provenance-tracked reporting.',
+			lead: 'LedgerSync', agents: ['LedgerSync', 'AnomalyHound', 'AuditTrail'],
+			welcome: 'Welcome to Accounting services. I manage real-time reconciliation, anomaly detection, and financial reporting. How can I help?',
+			quick: [['Reconcile', 'Reconcile accounts'], ['Generate report', 'Generate report'], ['Anomaly scan', 'Scan anomalies']],
+			responses: ['Running real-time ledger reconciliation. Cross-referencing all transaction records and flagging discrepancies.', 'Financial report generated. Revenue tracking, expense categorisation, and cash flow analysis included.', 'Anomaly scan complete. 3 transactions flagged with confidence scores and recommended actions.']
+		},
+		compliance: {
+			label: 'Regulatory & compliance', lines: 'Monitoring · Gap analysis · Automated reporting',
+			sub: '4 agents active · 12 regulations tracked',
+			about: 'Continuous compliance monitoring, regulatory change detection, gap analysis and automated reporting. Compliance state as a real-time credential.',
+			lead: 'RegWatch', agents: ['RegWatch', 'GapAnalyst', 'AutoReport'],
+			welcome: 'Welcome to Compliance services. I monitor regulatory changes, analyse gaps, and generate compliance reports. How can I assist?',
+			quick: [['Compliance check', 'Run compliance check'], ['Gap analysis', 'Gap analysis'], ['Reg updates', 'Regulatory updates']],
+			responses: ['Compliance check running across all applicable frameworks. Monitoring 12 active regulations.', 'Gap analysis complete. 4 areas identified where current practices need alignment. Severity ratings included.', 'Regulatory monitoring shows 2 recent changes. Impact assessments and recommended updates prepared.']
+		},
+		property: {
+			label: 'Real estate & property', lines: 'Title verification · Settlement · Valuation',
+			sub: '4 agents active · KERI-anchored ownership records',
+			about: 'Title verification, settlement coordination and property management through agents. Ownership, valuation and inspection records as verifiable data.',
+			lead: 'TitleVerify', agents: ['TitleVerify', 'SettleBot', 'ValuationAI'],
+			welcome: 'Welcome to Property services. I handle title verification, settlement coordination, and valuations. All records are KERI-anchored. How can I help?',
+			quick: [['Verify title', 'Verify a title'], ['Settlement', 'Settlement help'], ['Valuation', 'Property valuation']],
+			responses: ['Title verification initiated. Checking ownership history and credential chains via KERI-anchored records.', 'Settlement coordination started. All parties identified, KERI identities verified, conditions prepared.', 'Valuation analysis underway. Reviewing comparable sales and market conditions.']
+		},
+		hr: {
+			label: 'HR & workforce', lines: 'Recruitment · Credentials · Onboarding · CPD',
+			sub: '4 agents active · Portable ACDC credentials',
+			about: 'Credential-verified recruitment, AI-assisted onboarding and continuous professional development. Qualifications as portable ACDC credentials.',
+			lead: 'CredRecruit', agents: ['CredRecruit', 'OnboardFlow', 'SkillTrack'],
+			welcome: 'Welcome to HR services. I verify professional credentials, manage onboarding, and track continuing development. How can I assist?',
+			quick: [['Verify credentials', 'Verify credentials'], ['Onboarding', 'Start onboarding'], ['Track CPD', 'Track CPD']],
+			responses: ['Credential verification initiated. Checking ACDC credentials against issuing authorities.', 'Onboarding workflow prepared. Credential requests and orientation materials generated.', 'CPD tracking updated. 42 hours verified this year. 3 upcoming opportunities identified.']
+		},
+		advisory: {
+			label: 'Advisory & strategy', lines: 'Strategic analysis · Expert matching · Knowledge capture',
+			sub: '4 agents active · ACDC-verified expertise',
+			about: 'AI-augmented strategic analysis with verified expertise credentials. Engagement scoping, deliverable tracking and knowledge capture through agents.',
+			lead: 'StrategyAI', agents: ['StrategyAI', 'ExpertMatch', 'KnowledgeCapture'],
+			welcome: 'Welcome to Advisory services. I provide strategic analysis and expert matching with verified credentials. How can I help?',
+			quick: [['Strategic review', 'Strategic review'], ['Find expert', 'Find an expert'], ['Capture insights', 'Capture insights']],
+			responses: ['Strategic analysis initiated. Gathering market intelligence and analysing competitive positioning.', 'Expert matching in progress. Searching ACDC-verified credentials for qualified advisors.', 'Knowledge capture started. Synthesising insights and building organisational knowledge base.']
+		},
+		supply: {
+			label: 'Supply chain & trade', lines: 'Provenance · Trade finance · Logistics · Customs',
+			sub: '4 agents active · KERI-anchored participant identity',
+			about: 'End-to-end provenance with KERI-anchored participant identity. Agents manage logistics, trade finance documentation and customs compliance.',
+			lead: 'ProvenanceTrack', agents: ['ProvenanceTrack', 'TradeFinance', 'LogisticsOpt'],
+			welcome: 'Welcome to Supply Chain services. I track provenance, process trade documentation, and optimise logistics. How can I assist?',
+			quick: [['Track provenance', 'Track provenance'], ['Trade docs', 'Trade documents'], ['Optimise logistics', 'Optimise logistics']],
+			responses: ['Provenance tracking activated. Tracing full supply chain with KERI AID verification at each stage.', 'Trade finance documentation being processed. Verifying participant credentials and preparing letters of credit.', 'Logistics optimisation complete. 3 alternative routes identified with cost-time trade-offs.']
+		},
+		healthcare: {
+			label: 'Healthcare administration', lines: 'Care coordination · Claims · Consent management',
+			sub: '4 agents active · Patient identity anchored in KERI',
+			about: 'Patient identity anchored in KERI AIDs. Agents coordinate referrals, insurance pre-authorisation and care pathways with verifiable consent chains.',
+			lead: 'CareCoord', agents: ['CareCoord', 'ConsentGuard', 'ClaimsBot'],
+			welcome: 'Welcome to Healthcare services. I coordinate referrals, manage consent records, and handle pre-authorisation. How can I help?',
+			quick: [['Referral', 'Coordinate referral'], ['Pre-authorise', 'Pre-authorise claim'], ['Consent', 'Manage consent']],
+			responses: ['Referral coordination initiated. Verifying provider credentials and preparing referral package.', 'Pre-authorisation submitted. Policy credentials verified, clinical documentation prepared.', 'Consent records retrieved. 7 active consent grants across 3 providers.'],
+			link: ['https://selfdriven.healthcare', 'selfdriven.healthcare']
+		}
+	};
+
+	var ARROW = '<svg class="arrow-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M6 18 18 6M6 6h12v12"/></svg>';
+
+	function esc(s) {
+		return String(s).replace(/[&<>"']/g, function (c) {
+			return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+		});
+	}
+	function pick(a) { return a[Math.floor(Math.random() * a.length)]; }
+	function el(tag, cls, text) {
+		var n = document.createElement(tag);
+		if (cls) n.className = cls;
+		if (text != null) n.textContent = text;
+		return n;
+	}
+
+	// Build the domain cards on Home and one view per domain
+	var cards = document.getElementById('domain-cards');
+	var views = document.getElementById('views');
+
+	Object.keys(DOMAINS).forEach(function (id) {
+		var d = DOMAINS[id];
+
+		cards.insertAdjacentHTML('beforeend',
+			'<li class="pick"><button type="button" class="card-button" data-view="' + id + '">' +
+				'<h4>' + esc(d.label) + '</h4>' +
+				'<p class="desc">' + esc(d.lines) + '</p>' +
+				'<p class="agents"><strong>Agents</strong>' + esc(d.agents.join(' · ')) + '</p>' +
+			'</button></li>');
+
+		var quick = d.quick.map(function (q) {
+			return '<button type="button" data-say="' + esc(q[1]) + '">' + esc(q[0]) + '</button>';
+		}).join('');
+
+		var roster = '';
+		if (d.roster) {
+			roster =
+				'<div class="scope-group">' +
+					'<div class="scope-head"><span class="scope-tag">Agents</span><h3>On this domain.</h3><p>Each agent holds its own KERI AID and works inside your delegation.</p></div>' +
+					'<ul class="scope-list">' + d.roster.map(function (a) {
+						return '<li><h4>' + esc(a[0]) + '</h4><p>' + esc(a[1]) + '</p>' +
+							'<span class="status ' + (a[2] === 'Active' ? 'done' : 'idle') + '">' + esc(a[2]) + ' <span class="when">· ' + esc(a[3]) + '</span></span></li>';
+					}).join('') + '</ul>' +
+				'</div>';
+		}
+
+		var link = d.link
+			? '<a class="text-link" href="' + d.link[0] + '" target="_blank" rel="noopener">' + esc(d.link[1]) + ' ' + ARROW + '</a>'
+			: '';
+
+		views.insertAdjacentHTML('beforeend',
+			'<section class="view" id="v-' + id + '" aria-labelledby="t-' + id + '" hidden>' +
+				'<div class="section-heading">' +
+					'<div><p class="eyebrow">' + esc(d.lines) + '</p><h2 id="t-' + id + '" tabindex="-1">' + esc(d.label) + '<span>.</span></h2></div>' +
+					'<p class="section-note">' + esc(d.sub) + '</p>' +
+				'</div>' +
+				'<div class="groups">' +
+					'<div class="scope-group">' +
+						'<div class="scope-head"><span class="scope-tag">Agent</span><h3>Talk to ' + esc(d.lead) + '.</h3><p>' + esc(d.about) + '</p>' + link + '</div>' +
+						'<div class="chat" data-domain="' + id + '">' +
+							'<div class="chat-quick">' + quick + '</div>' +
+							'<div class="chat-log" role="log" aria-live="polite" aria-label="Conversation with ' + esc(d.lead) + '"></div>' +
+							'<form class="chat-form" autocomplete="off">' +
+								'<label class="sr-only" for="in-' + id + '">Message</label>' +
+								'<input id="in-' + id + '" type="text" placeholder="Ask your ' + esc(d.label.split(' ')[0].toLowerCase()) + ' agent…">' +
+								'<button type="submit" class="button">Send</button>' +
+							'</form>' +
+						'</div>' +
+					'</div>' +
+					roster +
+				'</div>' +
+			'</section>');
+
+		var log = views.querySelector('#v-' + id + ' .chat-log');
+		log.appendChild(agentMsg(d.lead, d.welcome));
+	});
+
+	function agentMsg(name, text, typing) {
+		var m = el('div', 'msg msg-agent' + (typing ? ' msg-typing' : ''));
+		var head = el('div', 'msg-head');
+		head.appendChild(el('span', 'msg-name', name));
+		head.appendChild(el('span', 'acdc', 'ACDC ✓'));
+		m.appendChild(head);
+		m.appendChild(el('div', 'msg-body', text));
+		return m;
+	}
+
+	function say(id, text) {
+		text = (text || '').trim();
+		if (!text) return;
+		var d = DOMAINS[id];
+		var log = document.querySelector('#v-' + id + ' .chat-log');
+		log.appendChild(el('div', 'msg msg-user', text));
+		var agent = pick(d.agents);
+		var typing = agentMsg(agent, 'Working…', true);
+		log.appendChild(typing);
+		log.scrollTop = log.scrollHeight;
+		setTimeout(function () {
+			typing.remove();
+			log.appendChild(agentMsg(agent, pick(d.responses)));
+			log.scrollTop = log.scrollHeight;
+		}, 1200 + Math.random() * 1500);
+	}
+
+	// Navigation between views
+	var VIEW_IDS = ['home', 'identity', 'settings'].concat(Object.keys(DOMAINS));
+	var workspace = document.getElementById('workspace');
+
+	function show(id, focus) {
+		if (VIEW_IDS.indexOf(id) === -1) id = 'home';
+		document.querySelectorAll('.view').forEach(function (v) { v.hidden = v.id !== 'v-' + id; });
+		document.querySelectorAll('.rail [data-view]').forEach(function (b) {
+			if (b.dataset.view === id) b.setAttribute('aria-current', 'true'); else b.removeAttribute('aria-current');
+		});
+		var active = document.querySelector('.rail [aria-current="true"]');
+		if (active && active.scrollIntoView && window.matchMedia('(max-width:960px)').matches) {
+			active.scrollIntoView({ block: 'nearest', inline: 'center' });
+		}
+		if (history.replaceState) history.replaceState(null, '', '#' + id);
+		if (focus) {
+			if (workspace.getBoundingClientRect().top < 0) workspace.scrollIntoView();
+			var h = document.getElementById('t-' + id);
+			if (h) h.focus({ preventScroll: true });
+		}
+	}
+
+	document.addEventListener('click', function (e) {
+		var v = e.target.closest('[data-view]');
+		if (v) { show(v.dataset.view, true); return; }
+
+		var q = e.target.closest('[data-say]');
+		if (q) { say(q.closest('.chat').dataset.domain, q.dataset.say); return; }
+
+		var s = e.target.closest('.switch');
+		if (s) s.setAttribute('aria-checked', s.getAttribute('aria-checked') === 'true' ? 'false' : 'true');
+	});
+
+	document.addEventListener('submit', function (e) {
+		var f = e.target.closest('.chat-form');
+		if (!f) return;
+		e.preventDefault();
+		var input = f.querySelector('input');
+		say(f.closest('.chat').dataset.domain, input.value);
+		input.value = '';
+	});
+
+	// Sign in / out (demo flow)
+	var signin = document.getElementById('signin');
+	var app = document.getElementById('app');
+	var gate = document.getElementById('gate');
+	var gateTitle = document.getElementById('gate-title');
+	var gateSub = document.getElementById('gate-sub');
+	var signinButtons = document.querySelectorAll('[data-signin]');
+
+	function resetGate() {
+		gate.classList.remove('verifying', 'verified');
+		gateTitle.textContent = 'Ready to verify';
+		gateSub.textContent = 'Agents execute. Professionals conduct. Credentials prove.';
+		signinButtons.forEach(function (b) { b.disabled = false; });
+	}
+
+	function doSignIn() {
+		signinButtons.forEach(function (b) { b.disabled = true; });
+		gate.classList.add('verifying');
+		gateTitle.textContent = 'Verifying identity…';
+		gateSub.textContent = 'Touch your sensor or approve on your device';
+		setTimeout(function () {
+			gate.classList.add('verified');
+			gateTitle.textContent = 'Identity verified';
+			gateSub.textContent = 'KERI key event confirmed · Loading your services';
+		}, 1800);
+		setTimeout(function () {
+			signin.hidden = true;
+			app.hidden = false;
+			resetGate();
+			window.scrollTo(0, 0);
+			show(location.hash.slice(1) || 'home', false);
+		}, 2800);
+	}
+
+	signinButtons.forEach(function (b) { b.addEventListener('click', doSignIn); });
+	document.getElementById('signout').addEventListener('click', function () {
+		app.hidden = true;
+		signin.hidden = false;
+		window.scrollTo(0, 0);
+	});
+})();
 </script>
 </body>
 </html>
